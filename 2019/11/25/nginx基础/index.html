@@ -91,21 +91,21 @@
 <meta name="description" content="nginx基础 一、Nginx简介 二，Nginx架构设计 三、nginx安装 四、文件结构以及模型概念 五、Nginx日志   一，Nginx简介Apache Apache仍然是时长占用量最高的web服务器，据最新数据统计，市场占有率目前是50%左右。主要优势在于一个是比较早出现的一个Http静态资源服务器，同时又是开源的。所以在技术上的支持以及市面上的各种解决方案都比较成熟。Apache支持的">
 <meta name="keywords" content="Nginx">
 <meta property="og:type" content="article">
-<meta property="og:title" content="20191125170050">
-<meta property="og:url" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;20191125170050&#x2F;index.html">
+<meta property="og:title" content="nginx基础">
+<meta property="og:url" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;nginx%E5%9F%BA%E7%A1%80&#x2F;index.html">
 <meta property="og:site_name" content="jthu的博客">
 <meta property="og:description" content="nginx基础 一、Nginx简介 二，Nginx架构设计 三、nginx安装 四、文件结构以及模型概念 五、Nginx日志   一，Nginx简介Apache Apache仍然是时长占用量最高的web服务器，据最新数据统计，市场占有率目前是50%左右。主要优势在于一个是比较早出现的一个Http静态资源服务器，同时又是开源的。所以在技术上的支持以及市面上的各种解决方案都比较成熟。Apache支持的">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;20191125170050&#x2F;5FB528CD197C4970A0F9249E8D78ABD1">
-<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;20191125170050&#x2F;77BEA255FC8448D7856E613B2DF6AFE9">
-<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;20191125170050&#x2F;B2CEA77953F347E096947D224D64249E">
-<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;20191125170050&#x2F;3BC567D4CE694097922BD4226ECC1983">
-<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;20191125170050&#x2F;EB3C80B075DB4ADE8F35DB7B6E011F32">
-<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;20191125170050&#x2F;BAB3479FD5F54DBBBB5C71A811F53F96">
-<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;20191125170050&#x2F;498BFE42F9F34978891B411C4F115E22">
-<meta property="og:updated_time" content="2019-11-25T09:02:30.916Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;nginx%E5%9F%BA%E7%A1%80&#x2F;5FB528CD197C4970A0F9249E8D78ABD1">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;nginx%E5%9F%BA%E7%A1%80&#x2F;77BEA255FC8448D7856E613B2DF6AFE9">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;nginx%E5%9F%BA%E7%A1%80&#x2F;B2CEA77953F347E096947D224D64249E">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;nginx%E5%9F%BA%E7%A1%80&#x2F;3BC567D4CE694097922BD4226ECC1983">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;nginx%E5%9F%BA%E7%A1%80&#x2F;EB3C80B075DB4ADE8F35DB7B6E011F32">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;nginx%E5%9F%BA%E7%A1%80&#x2F;BAB3479FD5F54DBBBB5C71A811F53F96">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;nginx%E5%9F%BA%E7%A1%80&#x2F;498BFE42F9F34978891B411C4F115E22">
+<meta property="og:updated_time" content="2019-11-25T09:04:05.254Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;20191125170050&#x2F;5FB528CD197C4970A0F9249E8D78ABD1">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;nginx%E5%9F%BA%E7%A1%80&#x2F;5FB528CD197C4970A0F9249E8D78ABD1">
 
 
 
@@ -135,13 +135,13 @@
 
 
 
-  <link rel="canonical" href="https://hicker000.github.io/2019/11/25/20191125170050/"/>
+  <link rel="canonical" href="https://hicker000.github.io/2019/11/25/nginx基础/"/>
 
 
 
 
 
-  <title>20191125170050 | jthu的博客</title>
+  <title>nginx基础 | jthu的博客</title>
   
 
 
@@ -280,7 +280,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hicker000.github.io/2019/11/25/20191125170050/">
+    <link itemprop="mainEntityOfPage" href="https://hicker000.github.io/2019/11/25/nginx%E5%9F%BA%E7%A1%80/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="jthu">
@@ -297,7 +297,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">20191125170050</h1>
+          <h1 class="post-title" itemprop="name headline">nginx基础</h1>
         
 
         <div class="post-meta">
@@ -350,9 +350,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/11/25/20191125170050/#comments" itemprop="discussionUrl">
+                <a href="/2019/11/25/nginx%E5%9F%BA%E7%A1%80/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/11/25/20191125170050/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2019/11/25/nginx基础/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -1067,9 +1067,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://hicker000.github.io/2019/11/25/20191125170050/';
-          this.page.identifier = '2019/11/25/20191125170050/';
-          this.page.title = '20191125170050';
+          this.page.url = 'https://hicker000.github.io/2019/11/25/nginx%E5%9F%BA%E7%A1%80/';
+          this.page.identifier = '2019/11/25/nginx基础/';
+          this.page.title = 'nginx基础';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://.disqus.com/embed.js';
