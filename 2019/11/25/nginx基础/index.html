@@ -407,7 +407,7 @@
 <li><a href="#5">五、Nginx日志</a></li>
 </ul>
 <hr>
-<h2 id="一，Nginx简介"><a href="#一，Nginx简介" class="headerlink" title="一，Nginx简介"></a><span id="1">一，Nginx简介</h2><p><strong>Apache</strong></p>
+<h2 id="一，Nginx简介"><a href="#一，Nginx简介" class="headerlink" title="一，Nginx简介"></a><span id="1">一，Nginx简介</span></h2><p><strong>Apache</strong></p>
 <p>Apache仍然是时长占用量最高的web服务器，据最新数据统计，市场占有率目前是50%左右。主要优势在于一个是比较早出现的一个Http静态资源服务器，同时又是开源的。所以在技术上的支持以及市面上的各种解决方案都比较成熟。Apache支持的模块非常丰富。</p>
 <p><strong>Nginx</strong></p>
 <p>Nginx是俄罗斯人编写的一款高性能的HTTP和反向代理服务器，在高连接并发的情况下，它能够支持高达50000个并发连接数的响应，但是内存、CPU等系统资源消耗却很低，运行很稳定。目前Nginx在国内很多大型企业都有应用，据最新统计，Nginx的市场占有率已经到33%左右了。而Apache的市场占有率虽然仍然是最高的，但是是呈下降趋势。而Nginx的势头很明显。选择Nginx的理由也很简单：第一，它可以支持5W高并发连接；第二，内存消耗少；第三，成本低，如果采用F5、NetScaler等硬件负载均衡设备的话，需要大几十万。而Nginx是开源的，可以免费使用并且能用于商业用途</p>
@@ -423,13 +423,13 @@
 <p>3、静态服务器（比tomcat性能高很多）：在mvvm模式中，充当文件读取职责</p>
 <p>总结：实际使用中，这三项功用，会混合使用。比如先分离动静，再路由服务，再负载机器</p>
 <h3 id="正向代理与反向代理"><a href="#正向代理与反向代理" class="headerlink" title="正向代理与反向代理"></a><strong>正向代理与反向代理</strong></h3><p>1、<strong>代理</strong>：意思是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。</p>
-<p><img src="5FB528CD197C4970A0F9249E8D78ABD1" alt="image"></p>
+<p><img src="/2019/11/25/nginx%E5%9F%BA%E7%A1%80/5FB528CD197C4970A0F9249E8D78ABD1" alt="image"></p>
 <p>比如代理律师，代购，政府机关办事的代理人等等。</p>
 <p>2、<strong>反向代理</strong>（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
-<p><img src="77BEA255FC8448D7856E613B2DF6AFE9" alt="image"></p>
+<p><img src="/2019/11/25/nginx%E5%9F%BA%E7%A1%80/77BEA255FC8448D7856E613B2DF6AFE9" alt="image"></p>
 <hr>
-<h2 id="二，Nginx架构设计"><a href="#二，Nginx架构设计" class="headerlink" title="二，Nginx架构设计"></a><span id="2">二，Nginx架构设计</h2><h3 id="2-1。-Nginx的模块化设计"><a href="#2-1。-Nginx的模块化设计" class="headerlink" title="2.1。 Nginx的模块化设计"></a>2.1。 Nginx的模块化设计</h3><p>高度模块化的设计是 Nginx 的架构基础。Nginx<br>服务器被分解为多个模块，每个模块就是一个功能模块，只负责自身的功能，模块之间严格遵循“高内聚，低耦合”的原则。</p>
-<p><img src="B2CEA77953F347E096947D224D64249E" alt="image"></p>
+<h2 id="二，Nginx架构设计"><a href="#二，Nginx架构设计" class="headerlink" title="二，Nginx架构设计"></a><span id="2">二，Nginx架构设计</span></h2><h3 id="2-1。-Nginx的模块化设计"><a href="#2-1。-Nginx的模块化设计" class="headerlink" title="2.1。 Nginx的模块化设计"></a>2.1。 Nginx的模块化设计</h3><p>高度模块化的设计是 Nginx 的架构基础。Nginx<br>服务器被分解为多个模块，每个模块就是一个功能模块，只负责自身的功能，模块之间严格遵循“高内聚，低耦合”的原则。</p>
+<p><img src="/2019/11/25/nginx%E5%9F%BA%E7%A1%80/B2CEA77953F347E096947D224D64249E" alt="image"></p>
 <ul>
 <li><strong>核心模块</strong></li>
 </ul>
@@ -451,12 +451,12 @@
 </ul>
 <p>第三方模块是为了扩展 Nginx 服务器应用，完成开发者自定义功能，如：Json 支持、Lua<br>支持等。</p>
 <h3 id="2-2-Nginx多进程模型"><a href="#2-2-Nginx多进程模型" class="headerlink" title="2.2. Nginx多进程模型"></a>2.2. Nginx多进程模型</h3><hr>
-<p><img src="3BC567D4CE694097922BD4226ECC1983" alt="image"></p>
+<p><img src="/2019/11/25/nginx%E5%9F%BA%E7%A1%80/3BC567D4CE694097922BD4226ECC1983" alt="image"></p>
 <p>1、服务器每当收到一个客户端时。就有服务器主进程（master<br>process）生成一个子进程（worker<br>process）出来和客户端建立连接进行交互，直到连接断开，该子进程结束。</p>
 <p>2、使用进程的好处是各个进程之间相互独立，不需要加锁，减少了使用锁对性能造成影响，同时降低编程的复杂度，降低开发成本。</p>
 <p>其次，采用独立的进程，可以让进程互相之间不会影响，如果一个进程发生异常退出时，其它进程正常工作，master<br>进程则很快启动新的 worker 进程，确保服务不中断，将风险降到最低。</p>
 <p>缺点是操作系统生成一个子进程需要进行内存复制等操作，在资源和时间上会产生一定的开销；当有大量请求时，会导致系统性能下降。</p>
-<h3 id="2-3-Nginx的epoll模式"><a href="#2-3-Nginx的epoll模式" class="headerlink" title="2.3. Nginx的epoll模式"></a>2.3. Nginx的epoll模式</h3><p><img src="EB3C80B075DB4ADE8F35DB7B6E011F32" alt="image"></p>
+<h3 id="2-3-Nginx的epoll模式"><a href="#2-3-Nginx的epoll模式" class="headerlink" title="2.3. Nginx的epoll模式"></a>2.3. Nginx的epoll模式</h3><p><img src="/2019/11/25/nginx%E5%9F%BA%E7%A1%80/EB3C80B075DB4ADE8F35DB7B6E011F32" alt="image"></p>
 <p>select和poll的处理模式如上图：</p>
 <p>–在某一时刻，进程收集所有的连接，其实这100万连接中大部分是没有事件发生的。因此，如果每次收集事件时，都把这100万连接的套接字传给操作系统（这首先就是用户态内存到内核内存的大量复制），而由操作系统内核寻找这些链接上没有处理的事件，将会是巨大的浪费。</p>
 <p>而epoll改进了收集连接的动作，提高效率。</p>
@@ -469,7 +469,7 @@
 <li><p>使用mmap加速内核与用户空间的消息传递</p>
 </li>
 </ul>
-<h2 id="三，nginx安装："><a href="#三，nginx安装：" class="headerlink" title="三，nginx安装："></a><span id="3">三，nginx安装：</h2><h3 id="3-1-源码编译方式"><a href="#3-1-源码编译方式" class="headerlink" title="3.1. 源码编译方式"></a>3.1. 源码编译方式</h3><p>安装make：</p>
+<h2 id="三，nginx安装："><a href="#三，nginx安装：" class="headerlink" title="三，nginx安装："></a><span id="3">三，nginx安装：</span></h2><h3 id="3-1-源码编译方式"><a href="#3-1-源码编译方式" class="headerlink" title="3.1. 源码编译方式"></a>3.1. 源码编译方式</h3><p>安装make：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install autoconf automake make</span><br></pre></td></tr></table></figure>
 
 
@@ -491,7 +491,7 @@
 <h3 id="3-2-yum方式："><a href="#3-2-yum方式：" class="headerlink" title="3.2. yum方式："></a>3.2. <strong>yum方式：</strong></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">centos6：yum install epel-release -y \#yum扩展源</span><br><span class="line"></span><br><span class="line">yum install nginx -y</span><br></pre></td></tr></table></figure>
 
 <hr>
-<h2 id="四，文件结构以及模型概念："><a href="#四，文件结构以及模型概念：" class="headerlink" title="四，文件结构以及模型概念："></a><span id="4">四，文件结构以及模型概念：</h2><h3 id="4-1-目录结构"><a href="#4-1-目录结构" class="headerlink" title="4.1. 目录结构"></a>4.1. 目录结构</h3><ul>
+<h2 id="四，文件结构以及模型概念："><a href="#四，文件结构以及模型概念：" class="headerlink" title="四，文件结构以及模型概念："></a><span id="4">四，文件结构以及模型概念：</span></h2><h3 id="4-1-目录结构"><a href="#4-1-目录结构" class="headerlink" title="4.1. 目录结构"></a>4.1. 目录结构</h3><ul>
 <li><strong>Conf 配置文件</strong></li>
 <li><strong>Html 网页文件</strong></li>
 <li><strong>Logs 日志文件</strong></li>
@@ -506,7 +506,7 @@
 
 
 <h3 id="4-2-nginx模型概念："><a href="#4-2-nginx模型概念：" class="headerlink" title="4.2. nginx模型概念："></a>4.2. nginx模型概念：</h3><p><strong>Nginx会按需同时运行多个进程：</strong></p>
-<p><img src="BAB3479FD5F54DBBBB5C71A811F53F96" alt="image"></p>
+<p><img src="/2019/11/25/nginx%E5%9F%BA%E7%A1%80/BAB3479FD5F54DBBBB5C71A811F53F96" alt="image"></p>
 <p>一个主进程(master)和几个工作进程(worker)，配置了缓存时还会有缓存加载器进程(cache<br>loader)和缓存管理器进程(cache manager)等。</p>
 <p>所有进程均是仅含有一个线程，并主要通过“共享内存”的机制实现进程间通信。</p>
 <p>主进程以root用户身份运行，而worker、cache loader和cache<br>manager均应以非特权用户身份（user配置项）运行。</p>
@@ -524,7 +524,7 @@
 <li>提供反向代理及过滤功能；</li>
 <li>nginx任何能完成的其它任务；</li>
 </ol>
-<h3 id="4-3-nginx-conf配置文件结构"><a href="#4-3-nginx-conf配置文件结构" class="headerlink" title="4.3. nginx.conf配置文件结构"></a>4.3. nginx.conf配置文件结构</h3><p><img src="498BFE42F9F34978891B411C4F115E22" alt="image"></p>
+<h3 id="4-3-nginx-conf配置文件结构"><a href="#4-3-nginx-conf配置文件结构" class="headerlink" title="4.3. nginx.conf配置文件结构"></a>4.3. nginx.conf配置文件结构</h3><p><img src="/2019/11/25/nginx%E5%9F%BA%E7%A1%80/498BFE42F9F34978891B411C4F115E22" alt="image"></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#user nobody; #主模块命令，</span><br><span class="line">指定Nginx的worker进程运行用户以及用户组，默认由nobody账号运行。</span><br><span class="line"></span><br><span class="line">worker_processes 1;  #指定Nginx要开启的进程数。  根据硬件调整，通常等于CPU数量或者2倍于CPU。</span><br><span class="line"></span><br><span class="line">worker_rlimit_nofile 100000; #worker进程的最大打开文件数限制</span><br><span class="line"></span><br><span class="line">#error_log logs/error.log;</span><br><span class="line"></span><br><span class="line">#error_log logs/error.log notice;</span><br><span class="line"></span><br><span class="line">#error_log logs/error.log info;</span><br><span class="line"></span><br><span class="line">#pid logs/nginx.pid;</span><br><span class="line"></span><br><span class="line">events &#123;</span><br><span class="line"></span><br><span class="line">use epoll;</span><br><span class="line"></span><br><span class="line">worker_connections 1024;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
@@ -558,7 +558,7 @@
 <p><strong>下面是server段虚拟主机的配置</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">        listen       80;   虚拟主机的服务端口</span><br><span class="line">        server_name  localhost;   用来指定ip或者域名，多个域名用逗号分开</span><br><span class="line">        #charset koi8-r;</span><br><span class="line">        location / &#123;        </span><br><span class="line">               #地址匹配设置，支持正则匹配，也支持条件匹配，这里是默认请求地址，用户可以location命令对nginx进行动态和静态网页过滤处理</span><br><span class="line">            root   html;                   虚拟主机的网页根目录</span><br><span class="line">            index  index.html index.htm;   默认访问首页文件</span><br><span class="line">        &#125;</span><br><span class="line">        #error_page  404              /404.html;</span><br><span class="line">        # redirect server error pages to the static page /50x.html        </span><br><span class="line">        error_page   500 502 503 504  /50x.html;</span><br><span class="line">        location = /50x.html &#123;</span><br><span class="line">            root   html;</span><br><span class="line">        &#125;     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <hr>
-<h3 id="五，Nginx日志"><a href="#五，Nginx日志" class="headerlink" title="五，Nginx日志"></a><span id="5">五，Nginx日志</h3><p>通过访问日志，你可以得到用户地域来源、跳转来源、使用终端、某个URL访问量等相关信息；通过错误日志，你可以得到系统某个服务或server的性能瓶颈等。因此，将日志好好利用，你可以得到很多有价值的信息。 </p>
+<h3 id="五，Nginx日志"><a href="#五，Nginx日志" class="headerlink" title="五，Nginx日志"></a><span id="5">五，Nginx日志</span></h3><p>通过访问日志，你可以得到用户地域来源、跳转来源、使用终端、某个URL访问量等相关信息；通过错误日志，你可以得到系统某个服务或server的性能瓶颈等。因此，将日志好好利用，你可以得到很多有价值的信息。 </p>
 <p><strong>日志格式</strong></p>
 <p>打开nginx.conf配置文件：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /usr/local/nginx/conf/nginx.conf</span><br></pre></td></tr></table></figure>
@@ -693,6 +693,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/02/25/%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F/" rel="prev" title="什么是消息中间件？">
+                什么是消息中间件？ <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -782,7 +786,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -793,7 +797,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -804,7 +808,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">3</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
