@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://hicker000.github.io/"/>
-  <updated>2020-02-25T06:24:07.088Z</updated>
+  <updated>2020-02-25T06:40:18.109Z</updated>
   <id>https://hicker000.github.io/</id>
   
   <author>
@@ -21,16 +21,16 @@
     <link href="https://hicker000.github.io/2020/02/25/a/"/>
     <id>https://hicker000.github.io/2020/02/25/a/</id>
     <published>2020-02-25T06:17:03.000Z</published>
-    <updated>2020-02-25T06:24:07.088Z</updated>
+    <updated>2020-02-25T06:40:18.109Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="/2020/02/25/a/E:%5Cimages%5Cpasted-0.png" alt></p><p><img src="/2020/02/25/a/pasted-0.png" alt></p>]]></content>
+    <content type="html"><![CDATA[<img src="/2020/02/25/a/pasted-0.png">]]></content>
     
     <summary type="html">
     
       
       
-        &lt;p&gt;&lt;img src=&quot;/2020/02/25/a/E:%5Cimages%5Cpasted-0.png&quot; alt&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;/2020/02/25/a/pasted-0.png&quot; alt&gt;&lt;/p&gt;
+        &lt;img src=&quot;/2020/02/25/a/pasted-0.png&quot;&gt;
+
 
       
     
