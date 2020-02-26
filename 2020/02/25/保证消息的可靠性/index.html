@@ -98,7 +98,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7&#x2F;image-20200225224640893.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7&#x2F;image-20200225224727268.png">
-<meta property="og:updated_time" content="2020-02-25T14:48:16.389Z">
+<meta property="og:updated_time" content="2020-02-26T01:52:57.072Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7&#x2F;image-20200225224640893.png">
 
@@ -466,9 +466,9 @@
 <h4 id="RabbitMQ-弄丢了数据"><a href="#RabbitMQ-弄丢了数据" class="headerlink" title="RabbitMQ 弄丢了数据"></a>RabbitMQ 弄丢了数据</h4><p>就是 RabbitMQ 自己弄丢了数据，这个你必须<strong>开启 RabbitMQ 的持久化</strong>，就是消息写入之后会持久化到磁盘，哪怕是 RabbitMQ 自己挂了，<strong>恢复之后会自动读取之前存储的数据</strong>，一般数据不会丢。除非极其罕见的是，RabbitMQ 还没持久化，自己就挂了，<strong>可能导致少量数据丢失</strong>，但是这个概率较小。</p>
 <p>设置持久化有<strong>两个步骤</strong>：</p>
 <ul>
-<li><p>创建 queue 的时候将其设置为持久化<br><br>这样就可以保证 RabbitMQ 持久化 queue 的元数据，但是它是不会持久化 queue 里的数据的。</p>
+<li><p>创建 queue 的时候将其设置为持久化，这样就可以保证 RabbitMQ 持久化 queue 的元数据，但是它是不会持久化 queue 里的数据的。</p>
 </li>
-<li><p>第二个是发送消息的时候将消息的 <code>deliveryMode</code> 设置为 2<br><br>就是将消息设置为持久化的，此时 RabbitMQ 就会将消息持久化到磁盘上去。</p>
+<li><p>第二个是发送消息的时候将消息的 <code>deliveryMode</code> 设置为 2；就是将消息设置为持久化的，此时 RabbitMQ 就会将消息持久化到磁盘上去。</p>
 </li>
 <li><p>必须要同时设置这两个持久化才行，RabbitMQ 哪怕是挂了，再次重启，也会从磁盘上重启恢复 queue，恢复这个 queue 里的数据。</p>
 </li>
@@ -568,8 +568,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/02/25/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="next" title="常见面试题">
-                <i class="fa fa-chevron-left"></i> 常见面试题
+              <a href="/2020/02/25/%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F/" rel="next" title="什么是消息中间件？">
+                <i class="fa fa-chevron-left"></i> 什么是消息中间件？
               </a>
             
           </div>
@@ -577,6 +577,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/02/26/JMS%E5%92%8CActiveMQ%E7%AE%80%E4%BB%8B/" rel="prev" title="JMS和ActiveMQ简介">
+                JMS和ActiveMQ简介 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -667,7 +671,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -678,7 +682,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -689,7 +693,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -816,7 +820,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">21.7k</span>
+    <span title="Site words total count">27.9k</span>
   
 </div>
 

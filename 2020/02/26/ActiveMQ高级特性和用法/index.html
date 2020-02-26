@@ -1,0 +1,1502 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css" />
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Hexo, NexT" />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="jthu的博客" type="application/atom+xml" />
+
+
+
+
+
+
+<meta name="description" content="ActiveMQ高级特性和用法嵌入式ActiveMQ 在自己的应用程序中嵌入一个消息队列。见代码模块 no-spring包embed下。  消息存储的持久化ActiveMQ的另一个问题就是只要是软件就有可能挂掉，挂掉不可怕，怕的是挂掉之后把信息给丢了，怎么办，可以进行消息的持久化，ActiveMQ提供了几种持久化方式：  AMQ消息存储-基于文件的存储方式，它具有写入速度快和容易恢复的特点。消息存">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ActiveMQ高级特性和用法">
+<meta property="og:url" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2020&#x2F;02&#x2F;26&#x2F;ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95&#x2F;index.html">
+<meta property="og:site_name" content="jthu的博客">
+<meta property="og:description" content="ActiveMQ高级特性和用法嵌入式ActiveMQ 在自己的应用程序中嵌入一个消息队列。见代码模块 no-spring包embed下。  消息存储的持久化ActiveMQ的另一个问题就是只要是软件就有可能挂掉，挂掉不可怕，怕的是挂掉之后把信息给丢了，怎么办，可以进行消息的持久化，ActiveMQ提供了几种持久化方式：  AMQ消息存储-基于文件的存储方式，它具有写入速度快和容易恢复的特点。消息存">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95&#x2F;image-20200226103834697.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95&#x2F;image-20200226103844467.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95&#x2F;image-20200226103858265.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95&#x2F;image-20200226103909918.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95&#x2F;image-20200226103920604.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95&#x2F;image-20200226103931683.png">
+<meta property="og:updated_time" content="2020-02-26T02:42:38.133Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95&#x2F;image-20200226103834697.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://hicker000.github.io/2020/02/26/ActiveMQ高级特性和用法/"/>
+
+
+
+
+
+  <title>ActiveMQ高级特性和用法 | jthu的博客</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband">
+		<a href="https://github.com/hicker000/" target="_blank" rel="noopener"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_orange_ff7600.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1" style="position: absolute; top:0; right: 0; border: 0"></a>
+	</div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">jthu的博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">后端技术</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-question-circle"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" target="_blank" rel="noopener" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://hicker000.github.io/2020/02/26/ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="jthu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/head.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="jthu的博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">ActiveMQ高级特性和用法</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-26T10:32:30+08:00">
+                2020-02-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/ActiveMQ/" itemprop="url" rel="index">
+                    <span itemprop="name">ActiveMQ</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/02/26/ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2020/02/26/ActiveMQ高级特性和用法/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">字数统计&#58;</span>
+                
+                <span title="字数统计">
+                  4.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  18
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="ActiveMQ高级特性和用法"><a href="#ActiveMQ高级特性和用法" class="headerlink" title="ActiveMQ高级特性和用法"></a>ActiveMQ高级特性和用法</h1><h2 id="嵌入式ActiveMQ"><a href="#嵌入式ActiveMQ" class="headerlink" title="嵌入式ActiveMQ"></a>嵌入式ActiveMQ</h2><blockquote>
+<p>在自己的应用程序中嵌入一个消息队列。见代码模块 no-spring包embed下。</p>
+</blockquote>
+<h2 id="消息存储的持久化"><a href="#消息存储的持久化" class="headerlink" title="消息存储的持久化"></a>消息存储的持久化</h2><p>ActiveMQ的另一个问题就是只要是软件就有可能挂掉，挂掉不可怕，怕的是挂掉之后把信息给丢了，怎么办，可以进行消息的持久化，ActiveMQ提供了几种持久化方式：</p>
+<ol>
+<li>AMQ消息存储-基于文件的存储方式，它具有写入速度快和容易恢复的特点。消息存储在一个个文件中，文件的默认大小为32M，如果一条消息的大小超过了32M，那么这个值必须设置大一点。当一个存储文件中的消息已经全部被消费，那么这个文件将被标识为可删除，在下一个清除阶段，这个文件被删除。AMQ适用于ActiveMQ5.3之前的版本。</li>
+<li>KahaDB消息存储-提供了容量的提升和恢复能力，是现在的默认存储方式；KahaDB是基于文件的本地数据库储存形式，虽然没有AMQ的速度快，但是它具有强扩展性，恢复的时间比AMQ短，从5.4版本之后KahaDB做为默认的持久化方式。</li>
+<li>JDBC消息存储-消息基于JDBC存储的；</li>
+<li>Memory消息存储-基于内存的消息存储，由于内存不属于持久化范畴。所以内存存储不在讨论范围内。</li>
+</ol>
+<h3 id="KahaDB"><a href="#KahaDB" class="headerlink" title="KahaDB"></a>KahaDB</h3><p>由于KahaDB是默认的持久化存储方案。所以即使你不配置任何的KahaDB参数信息，ActiveMQ也会启动KahaDB。这种情况下，KahaDB文件所在位置是你的ActiveMQ安装路径下的/data/KahaDB子目录。</p>
+<h3 id="关系型数据库存储方案"><a href="#关系型数据库存储方案" class="headerlink" title="关系型数据库存储方案"></a>关系型数据库存储方案</h3><p>从ActiveMQ 4+版本开始，ActiveMQ就支持使用关系型数据库进行持久化存储——通过JDBC实现的数据库连接。可以使用的关系型数据库囊括了目前市面的主流数据库。</p>
+<p>使用JDBC的方式持久化</p>
+<p>1、修改配置文件conf/activemq.xml：</p>
+<p>将其中的这段配置：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;persistenceAdapter&gt;</span><br><span class="line"></span><br><span class="line">    &lt;kahaDB directory=<span class="string">"$&#123;activemq.base&#125;/data/kahadb"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/persistenceAdapter&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>修改为为：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;persistenceAdapter&gt;</span><br><span class="line"></span><br><span class="line">    &lt;jdbcPersistenceAdapter dataSource=<span class="string">"#mysql-ds "</span>/&gt;</span><br><span class="line">    </span><br><span class="line">&lt;/persistenceAdapter&gt;</span><br></pre></td></tr></table></figure>
+
+
+<p>2、然后在&lt;/<strong>broker</strong>&gt;标签后，增加数据源的配置：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&lt;bean id=<span class="string">"mysql-ds"</span> <span class="class"><span class="keyword">class</span></span>=<span class="string">"org.apache.commons.dbcp2.BasicDataSource"</span> destroy-method=<span class="string">"close"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;property name=<span class="string">"driverClassName"</span> value=<span class="string">"com.mysql.jdbc.Driver"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;property name=<span class="string">"url"</span> value=<span class="string">"jdbc:mysql://localhost:3306/activemq?relaxAutoCommit=true\&amp;amp;useUnicode=true&amp;amp;characterEncoding=utf-8&amp;amp;serverTimezone=UTC"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;property name=<span class="string">"username"</span> value=<span class="string">"root"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;property name=<span class="string">"password"</span> value=<span class="string">"123456"</span>/&gt;</span><br><span class="line"></span><br><span class="line">    &lt;property name=<span class="string">"poolPreparedStatements"</span> value=<span class="string">"true"</span>/&gt;</span><br><span class="line"></span><br><span class="line">&lt;/bean&gt;</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>其中?<strong>relaxAutoCommit=true</strong>必须有，其他的属性根据数据库的配置自行决定。</p>
+</blockquote>
+<p>3、将mysql-connector-java-5.1.34-bin.jar（版本可以自行选择）放到ActiveMQ的/lib目录下。</p>
+<p>4、在Mysql数据库中增加在连接字符串中设置的数据库名activemq</p>
+<p>5、运行后，会发现在库中增加了3个表</p>
+<p><strong>activemq_acks:</strong> 用于存储订阅关系。如果是持久化Topic，订阅者和服务器的订阅关系在这个表保存，主要数据库字段如下：</p>
+<ul>
+<li><strong>container</strong>：消息的destination</li>
+<li><strong>sub_dest</strong>：如果是使用static集群，这个字段会有集群其他系统的信息</li>
+<li><strong>client_id</strong>：每个订阅者都必须有一个唯一的客户端id用以区分</li>
+<li><strong>sub_name</strong>：订阅者名称</li>
+<li><strong>selector</strong>：选择器，可以选择只消费满足条件的消息。条件可以用自定义属性实现，可支持多属性and和or操作</li>
+<li><strong>last_acked_id</strong>：记录消费过的消息的id</li>
+</ul>
+<p><strong>activemq_lock:</strong> 在集群环境中才有用，只有一个Broker可以获得消息，称为Master Broker，其他的只能作为备份等待Master Broker不可用，才可能成为下一个Master Broker。这个表用于记录哪个Broker是当前的Master Broker。</p>
+<p><strong>activemq_msgs:</strong> 用于存储消息，Queue和Topic都存储在这个表中。主要的数据库字段如下：</p>
+<ul>
+<li><strong>id</strong>：自增的数据库主键</li>
+<li><strong>container</strong>：消息的destination</li>
+<li><strong>msgid_prod</strong>：消息发送者客户端的主键</li>
+<li><strong>msg_seq</strong>：是发送消息的顺序，msgid_prod+msg_seq可以组成jms的messageid</li>
+<li><strong>expiration</strong>：消息的过期时间，存储的是从1970-01-01到现在的毫秒数</li>
+<li><strong>msg</strong>：消息本体的java序列化对象的二进制数据</li>
+<li><strong>priority</strong>：优先级，从0-9，数值越大优先级越高</li>
+</ul>
+<h4 id="消息的持久化订阅"><a href="#消息的持久化订阅" class="headerlink" title="消息的持久化订阅"></a>消息的持久化订阅</h4><p>分别运行订阅模式和P2P模式，可以发现，P2P模式缺省把消息进行持久化，而topic模式是没有的。</p>
+<h5 id="一般topic模式实验："><a href="#一般topic模式实验：" class="headerlink" title="一般topic模式实验："></a>一般topic模式实验：</h5><ol>
+<li>启动两个消费者，启动一个生产者，发送消息，两个消费者都可以收到。</li>
+<li>关闭一个消费者，生产者发送消息，活跃的消费者可以收到消息，启动被关闭的消费者，无法收到消息。</li>
+<li>关闭所有消费者，生产者发送消息，在ActiveMQ控制台可以看见消息已被接收，关闭再启动ActiveMQ，启动消费者收不到消息。</li>
+</ol>
+<blockquote>
+<p>如果topic模式下，需要消费者在离线又上线后，不管ActiveMQ是否重启过，都保证可以接受到消息，就需要进行持久化订阅。具体代码参见模块no-spirng包durabletopic。</p>
+</blockquote>
+<h3 id="持久Topic消费者端"><a href="#持久Topic消费者端" class="headerlink" title="持久Topic消费者端"></a>持久Topic消费者端</h3><ul>
+<li><p>需要设置客户端id：<em>connection</em>.setClientID(<strong>“Mark”</strong>);</p>
+</li>
+<li><p>消息的destination变为 Topic</p>
+</li>
+</ul>
+<ul>
+<li>消费者类型变为TopicSubscriber</li>
+</ul>
+<ul>
+<li>消费者创建时变为session.createDurableSubscriber(destination,”任意名字，代表订阅名”);</li>
+</ul>
+<ul>
+<li>运行一次消费者，将消费者在ActiveMQ上进行一次注册。然后在ActiveMQ的管理控制台subscribers页面可以看见我们的消费者。</li>
+</ul>
+<p><strong>效果：</strong></p>
+<ol>
+<li>运行生产者，发布消息，多个消费者可以正常收到。</li>
+<li>关闭一个消费者，运行生产者，发布消息后再启动被关闭的消费者，可以收到离线后的消息；</li>
+<li>关闭所有消费者，运行生产者，发布消息后，关闭ActiveMQ再启动，启动所有消费者，都可以收到消息。</li>
+</ol>
+<blockquote>
+<p>  <strong>注意：生产者端无需另外单独配置</strong></p>
+</blockquote>
+<h3 id="消息非持久化"><a href="#消息非持久化" class="headerlink" title="消息非持久化"></a>消息非持久化</h3><ul>
+<li>修改messageProducer.setDeliveryMode(DeliveryMode.NON_PERSISTENT);来设置消息本身的持久化属性为非持久化。重复上述实验，可以发现，第1,2点保持不变，但是第三点，当关闭ActiveMQ再启动，消费者关闭后再启动，是收不到消息的。</li>
+<li>说明，即使进行了持久订阅，但是消息本身如果是不持久化的，ActiveMQ关闭再启动，这些非持久化的消息会丢失，进行持久订阅的消费者也是收不到自身离线期间的消息的。</li>
+</ul>
+<h2 id="消息的可靠性"><a href="#消息的可靠性" class="headerlink" title="消息的可靠性"></a>消息的可靠性</h2><p>消息发送成功后，接收端接收到了消息。然后进行处理，但是可能由于某种原因，高并发也好，IO阻塞也好，反正这条消息在接收端处理失败了。而点对点的特性是一条消息，只会被一个接收端给接收，只要接收端A接收成功了，接收端B，就不可能接收到这条消息，如果是一些普通的消息还好，但是如果是一些很重要的消息，比如说用户的支付订单，用户的退款，这些与金钱相关的，是必须保证成功的，那么这个时候要怎么处理呢？必须要保证消息的可靠性，除了消息的持久化，还包括两个方面，一是生产者发送的消息可以被ActiveMQ收到，二是消费者收到了ActiveMQ发送的消息。</p>
+<h3 id="生产者"><a href="#生产者" class="headerlink" title="生产者"></a>生产者</h3><h4 id="send方法"><a href="#send方法" class="headerlink" title="send方法"></a>send方法</h4><ul>
+<li>在生产者端，我们会使用send()方法向ActiveMQ发送消息，默认情况下，持久化消息以同步方式发送，send()方法会被阻塞，直到 broker发送一个确认消息给生产者，这个确认消息表示broker已经成功接收到消息，并且持久化消息已经把消息保存到二级存储中。</li>
+<li><strong>实验send()方法</strong>：在模块no-spring包msgreliability下的JmsMsgReliablitySendProducer中send方法上打一个断点，可以看到send方法每执行一次，ActiveMQ管理控制台增加一条入队消息，数据库中增加一条消息。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.enjoyedu.msgreliability;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.enjoyedu.Constants;</span><br><span class="line"><span class="keyword">import</span> org.apache.activemq.ActiveMQConnection;</span><br><span class="line"><span class="keyword">import</span> org.apache.activemq.ActiveMQConnectionFactory;</span><br><span class="line"><span class="keyword">import</span> javax.jms.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JmsMsgReliablitySendProducer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*默认连接用户名*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String USERNAME</span><br><span class="line">            = ActiveMQConnection.DEFAULT_USER;</span><br><span class="line">    <span class="comment">/* 默认连接密码*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PASSWORD</span><br><span class="line">            = ActiveMQConnection.DEFAULT_PASSWORD;</span><br><span class="line">    <span class="comment">/* 默认连接地址*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String BROKEURL</span><br><span class="line">            = Constants.BROKEURL;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SENDNUM = <span class="number">4</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/* 连接工厂*/</span></span><br><span class="line">        ConnectionFactory connectionFactory;</span><br><span class="line">        <span class="comment">/* 连接*/</span></span><br><span class="line">        Connection connection = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">/* 会话*/</span></span><br><span class="line">        Session session;</span><br><span class="line">        <span class="comment">/* 消息的目的地*/</span></span><br><span class="line">        Destination destination;</span><br><span class="line">        <span class="comment">/* 消息的生产者*/</span></span><br><span class="line">        MessageProducer messageProducer;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 实例化连接工厂*/</span></span><br><span class="line">        connectionFactory = <span class="keyword">new</span> ActiveMQConnectionFactory(USERNAME, PASSWORD,</span><br><span class="line">                BROKEURL);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">/* 通过连接工厂获取连接*/</span></span><br><span class="line">            connection = connectionFactory.createConnection();</span><br><span class="line">            <span class="comment">/* 启动连接*/</span></span><br><span class="line">            connection.start();</span><br><span class="line">            <span class="comment">/* 创建session</span></span><br><span class="line"><span class="comment">             * 第一个参数表示是否使用事务，第二次参数表示是否自动确认*/</span></span><br><span class="line">            session = connection.createSession(<span class="keyword">false</span>,</span><br><span class="line">                    Session.AUTO_ACKNOWLEDGE);</span><br><span class="line">            <span class="comment">/* 创建一个消息队列*/</span></span><br><span class="line">            <span class="comment">//topic</span></span><br><span class="line">            destination = session.createQueue(<span class="string">"MsgReliability"</span>);</span><br><span class="line">            <span class="comment">/* 创建消息生产者*/</span></span><br><span class="line">            messageProducer = session.createProducer(destination);</span><br><span class="line">            <span class="comment">/* 循环发送消息*/</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SENDNUM; i++) &#123;</span><br><span class="line">                String msg = <span class="string">"发送消息"</span> + i + <span class="string">" "</span> + System.currentTimeMillis();</span><br><span class="line">                TextMessage textMessage = session.createTextMessage(msg);</span><br><span class="line">                System.out.println(<span class="string">"标准用法:"</span> + msg);</span><br><span class="line">                messageProducer.send(textMessage);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    connection.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (JMSException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="事务消息"><a href="#事务消息" class="headerlink" title="事务消息"></a>事务消息</h4><ul>
+<li>事务中消息（无论是否持久化），会进行异步发送，send() 方法不会被阻塞。但是commit方法会被阻塞，直到收到确认消息，表示broker已经成功接收到消息，并且持久化消息已经把消息保存到二级存储中。</li>
+<li><strong>实验事务消息</strong>：在模块no-spring包msgreliability下的JmsMsgReliablityTranProducer中在<em>session</em>.commit()打一个断点，可以看到send方法每执行一次，ActiveMQ管理控制台和数据库中没有任何变化，只有执行完<em>session</em>.commit()后ActiveMQ管理控制台和数据库中才增加。</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.enjoyedu.msgreliability;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> cn.enjoyedu.Constants;</span><br><span class="line"><span class="keyword">import</span> org.apache.activemq.ActiveMQConnection;</span><br><span class="line"><span class="keyword">import</span> org.apache.activemq.ActiveMQConnectionFactory;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.jms.*;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JmsMsgReliablityTranProducer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/*默认连接用户名*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String USERNAME</span><br><span class="line">            = ActiveMQConnection.DEFAULT_USER;</span><br><span class="line">    <span class="comment">/* 默认连接密码*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String PASSWORD</span><br><span class="line">            = ActiveMQConnection.DEFAULT_PASSWORD;</span><br><span class="line">    <span class="comment">/* 默认连接地址*/</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> String BROKEURL</span><br><span class="line">            = Constants.BROKEURL;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">int</span> SENDNUM = <span class="number">3</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="comment">/* 连接工厂*/</span></span><br><span class="line">        ConnectionFactory connectionFactory;</span><br><span class="line">        <span class="comment">/* 连接*/</span></span><br><span class="line">        Connection connection = <span class="keyword">null</span>;</span><br><span class="line">        <span class="comment">/* 会话*/</span></span><br><span class="line">        Session session;</span><br><span class="line">        <span class="comment">/* 消息的目的地*/</span></span><br><span class="line">        Destination destination;</span><br><span class="line">        <span class="comment">/* 消息的生产者*/</span></span><br><span class="line">        MessageProducer messageProducer;</span><br><span class="line"></span><br><span class="line">        <span class="comment">/* 实例化连接工厂*/</span></span><br><span class="line">        connectionFactory = <span class="keyword">new</span> ActiveMQConnectionFactory(USERNAME, PASSWORD,</span><br><span class="line">                BROKEURL);</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            <span class="comment">/* 通过连接工厂获取连接*/</span></span><br><span class="line">            connection = connectionFactory.createConnection();</span><br><span class="line">            <span class="comment">/* 启动连接*/</span></span><br><span class="line">            connection.start();</span><br><span class="line">            <span class="comment">/* 创建session</span></span><br><span class="line"><span class="comment">             * 第一个参数表示是否使用事务，第二次参数表示是否自动确认</span></span><br><span class="line"><span class="comment">             * commit,rollbakc*/</span></span><br><span class="line">            session = connection.createSession(<span class="keyword">true</span>,</span><br><span class="line">                    Session.AUTO_ACKNOWLEDGE);</span><br><span class="line">            <span class="comment">/* 创建一个消息队列*/</span></span><br><span class="line">            destination = session.createQueue(<span class="string">"MsgReliability"</span>);</span><br><span class="line">            <span class="comment">/* 创建消息生产者*/</span></span><br><span class="line">            messageProducer = session.createProducer(destination);</span><br><span class="line">            <span class="comment">/* 循环发送消息*/</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; SENDNUM; i++) &#123;</span><br><span class="line">                String msg = <span class="string">"发送消息"</span> + i + <span class="string">" "</span> + System.currentTimeMillis();</span><br><span class="line">                TextMessage textMessage = session.createTextMessage(msg);</span><br><span class="line">                System.out.println(<span class="string">"标准用法:"</span> + msg);</span><br><span class="line">                messageProducer.send(textMessage);</span><br><span class="line">            &#125;</span><br><span class="line">            session.commit();</span><br><span class="line">        &#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125; <span class="keyword">finally</span> &#123;</span><br><span class="line">            <span class="keyword">if</span> (connection != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    connection.close();</span><br><span class="line">                &#125; <span class="keyword">catch</span> (JMSException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+<h4 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h4><p>非持久化又不在事务中的消息，可能会有消息的丢失。为保证消息可以被ActiveMQ收到，我们应该采用<strong>事务消息或持久化消息</strong>。</p>
+<h3 id="消费者"><a href="#消费者" class="headerlink" title="消费者"></a>消费者</h3><p>对消息的确认有4种机制</p>
+<ol>
+<li><strong>AUTO_ACKNOWLEDGE</strong> = 1    自动确认</li>
+<li><strong>CLIENT_ACKNOWLEDGE</strong> = 2    客户端手动确认   </li>
+<li><strong>DUPS_OK_ACKNOWLEDGE</strong> = 3    自动批量确认</li>
+<li><strong>SESSION_TRANSACTED</strong> = 0    事务提交并确认</li>
+</ol>
+<ul>
+<li><strong>ACK_MODE</strong>描述了Consumer与broker确认消息的方式(时机),比如当消息被Consumer接收之后,Consumer将在何时确认消息。所以ack_mode描述的不是producer于broker之间的关系，而是customer于broker之间的关系。</li>
+<li>对于broker而言，只有接收到ACK指令,才会认为消息被正确的接收或者处理成功了,通过ACK，可以在consumer与Broker之间建立一种简单的“担保”机制.</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">session = connection.createSession(<span class="keyword">false</span>, Session.AUTO_ACKNOWLEDGE);</span><br></pre></td></tr></table></figure>
+
+
+<ul>
+<li><strong>第一个参数: 是否支持事务，如果为true，则会忽略</strong></li>
+<li><strong>第二个参数: 自动被jms服务器设置为SESSION_TRANSACTED</strong></li>
+</ul>
+<h4 id="AUTO-ACKNOWLEDGE"><a href="#AUTO-ACKNOWLEDGE" class="headerlink" title="AUTO_ACKNOWLEDGE"></a>AUTO_ACKNOWLEDGE</h4><p><strong>自动确认</strong></p>
+<ul>
+<li>“同步”(receive)方法返回message给消息时会立即确认。</li>
+<li>在”异步”(messageListener)方式中,将会首先调用listener.onMessage(message)，如果onMessage方法正常结束,消息将会正常确认。如果onMessage方法异常，将导致消费者要求ActiveMQ重发消息。此外需要注意，消息的重发次数是有限制的，每条消息中都会包含“redeliveryCounter”计数器，用来表示此消息已经被重发的次数，如果重发次数达到阀值，将导致broker端认为此消息无法消费,此消息将会被删除或者迁移到”dead<br>letter”通道中。</li>
+<li>因此当我们使用messageListener方式消费消息时，可以在onMessage方法中使用try-catch,这样可以在处理消息出错时记录一些信息，而不是让consumer不断去重发消息；如果你没有使用try-catch,就有可能会因为异常而导致消息重复接收的问题,需要注意onMessage方法中逻辑是否能够兼容对重复消息的判断。</li>
+</ul>
+<blockquote>
+<p><strong>实验方法</strong>：在模块no-spring包msgreliability下的JmsMsgReliablityConsumerAsyn中onMessage方法中增加一条throw语句，出现消息重发的现象。</p>
+</blockquote>
+<h4 id="CLIENT-ACKNOWLEDGE"><a href="#CLIENT-ACKNOWLEDGE" class="headerlink" title="CLIENT_ACKNOWLEDGE :"></a>CLIENT_ACKNOWLEDGE :</h4><ul>
+<li>客户端手动确认，这就意味着AcitveMQ将不会“自作主张”的为你ACK任何消息，开发者需要自己择机确认。可以用方法：<br>message.acknowledge()，或session.acknowledge()；效果一样。</li>
+<li>如果忘记调用acknowledge方法，将会导致当consumer重启后，会接受到重复消息，因为对于broker而言，那些尚未真正ACK的消息被视为“未消费”。</li>
+<li>我们可以在当前消息处理成功之后，立即调用message.acknowledge()方法来”逐个”确认消息，这样可以尽可能的减少因网络故障而导致消息重发的个数；当然也可以处理多条消息之后，间歇性的调用acknowledge方法来一次确认多条消息，减少ack的次数来提升consumer的效率，不过需要自行权衡。</li>
+</ul>
+<blockquote>
+<p><strong>实验方法</strong>：在模块no-spring包msgreliability下的JmsMsgReliablityConsumerAsyn中将session模式改为Session.<em>CLIENT_ACKNOWLEDGE</em>启动两个消费者，发送消息后，可以看到JmsMsgReliablityConsumerAsyn接收了消息但不确认。当JmsMsgReliablityConsumerAsyn重新启动后，会再一次收到同样的消息。加入<em>message.acknowledge()</em>后该现象消失。</p>
+</blockquote>
+<h4 id="DUPS-OK-ACKNOWLEDGE"><a href="#DUPS-OK-ACKNOWLEDGE" class="headerlink" title="DUPS_OK_ACKNOWLEDGE"></a>DUPS_OK_ACKNOWLEDGE</h4><p>类似于AUTO_ACK确认机制，为自动批量确认而生，而且具有“延迟”确认的特点，ActiveMQ会根据内部算法，在收到一定数量的消息自动进行确认。在此模式下，可能会出现重复消息，什么时候？当consumer故障重启后，那些尚未ACK的消息会重新发送过来。</p>
+<h4 id="SESSION-TRANSACTED"><a href="#SESSION-TRANSACTED" class="headerlink" title="SESSION_TRANSACTED"></a>SESSION_TRANSACTED</h4><p><strong>当session使用事务时，就是使用此模式</strong>。当决定事务中的消息可以确认时，必须调用session.commit()方法，commit方法将会导致当前session的事务中所有消息立即被确认。在事务开始之后的任何时机调用rollback()，意味着当前事务的结束，事务中所有的消息都将被重发。当然在commit之前抛出异常，也会导致事务的rollback。</p>
+<h2 id="通配符式订阅"><a href="#通配符式订阅" class="headerlink" title="通配符式订阅"></a>通配符式订阅</h2><p>Wildcards 用来支持联合的名字分层体系（federated name hierarchies）。它不是JMS<br>规范的一部分，而是ActiveMQ 的扩展。ActiveMQ 支持以下三种</p>
+<p><strong>wildcards</strong>：</p>
+<ul>
+<li>“.” 用于作为路径上名字间的分隔符。</li>
+<li>“*“ 用于匹配路径上的任何名字。</li>
+<li>“&gt;“ 用于递归地匹配任何以这个名字开始的destination。</li>
+</ul>
+<p>订阅者可以明确地指定destination 的名字来订阅消息，或者它也可以使用wildcards<br>来定义一个分层的模式来匹配它希望订阅的 destination。</p>
+<blockquote>
+<p>具体情况参见代码，在模块no-spirng包wildcards下。</p>
+</blockquote>
+<h2 id="死信队列"><a href="#死信队列" class="headerlink" title="死信队列"></a>死信队列</h2><blockquote>
+<p>用来保存处理失败或者过期的消息。 </p>
+</blockquote>
+<p><strong>出现下面情况时，消息会被重发</strong>： </p>
+<ol>
+<li>事务会话被回滚。</li>
+<li>事务会话在提交之前关闭。</li>
+<li>会话使用CLIENT_ACKNOWLEDGE模式，并且Session.recover()被调用。 </li>
+<li>自动应答失败</li>
+</ol>
+<blockquote>
+<p>当一个消息被重发超过最大重发次数（缺省为6次，消费者端可以修改）时，会给broker发送一个”有毒标记“，这个消息被认为是有问题，这时broker将这个消息发送到死信队列，以便后续处理。 </p>
+</blockquote>
+<p>在配置文件(activemq.xml)来调整死信发送策略。</p>
+<p><img src="/images/ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95/image-20200226103834697.png" alt="image-20200226103834697"></p>
+<blockquote>
+<p>可以单独使用死信消费者处理这些死信。参见代码，在模块no-spirng包dlq下。</p>
+</blockquote>
+<p><strong>注意</strong>，该代码中展示了如何配置重发策略。同时，重试策略属于ActiveMQ的部分，所以有部分connectionFactory，connection的声明等等不能使用接口，必须使用ActiveMQ的实现。</p>
+<p><img src="/images/ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95/image-20200226103844467.png" alt="image-20200226103844467"></p>
+<h2 id="Mirrored-Queue-镜像队列-了解即可"><a href="#Mirrored-Queue-镜像队列-了解即可" class="headerlink" title="Mirrored Queue 镜像队列(了解即可)"></a>Mirrored Queue 镜像队列(了解即可)</h2><blockquote>
+<p> ActiveMQ每一个queue中消息只能被一个消费者消费，然而，有时候，你希望能够监视生产者和消费者之间的消息流。</p>
+</blockquote>
+<p>MirroredQueue: Broker会把发送到某一个队列上的所有消息转发到一个名称类似的topic,因此监控程序只需要订阅这个topic.为启用MirroredQueue，首先要将BrokerService的useMirroredQueues属性设置为true：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;broker xmlns=&lt;http:<span class="comment">//activemq.apache.org/schema/core&gt; useMirroredQueue="true"&gt; &lt;/broker&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p> 然后可以通过destinationInterceptors设置其属性，如mirrortopic的前缀，缺省是VritualTopic.Mirror.</p>
+<p>修改后缀的配置示例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&lt;broker xmlns=<span class="string">"http://activemq.apache.org/schema/core"</span>&gt;        </span><br><span class="line">    &lt;destinationInterceptors&gt;               </span><br><span class="line">    	&lt;mirroredQueue copyMessage=<span class="string">"true"</span> postfix=<span class="string">".qmirror"</span> prefix=<span class="string">""</span> /&gt;        </span><br><span class="line">    &lt;/destinationInterceptors&gt; </span><br><span class="line">&lt;/broker&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<h2 id="消费者集群下需要考虑的问题"><a href="#消费者集群下需要考虑的问题" class="headerlink" title="消费者集群下需要考虑的问题"></a>消费者集群下需要考虑的问题</h2><p>我们现实中往往有这样的需求：</p>
+<ol>
+<li>消息接收方和发送方都是集群。 </li>
+<li>同一个消息的接收方可能有多个集群进行消息的处理。</li>
+<li>不同集群对于同一条消息的处理不能相互干扰。</li>
+</ol>
+<p>希望可以达到如下的效果：</p>
+<p><img src="/images/ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95/image-20200226103858265.png" alt="image-20200226103858265"></p>
+<blockquote>
+<p>对于集群消息，采用单独采用queue或者topic都不满足要求。</p>
+</blockquote>
+<p>采用Queue模型导致：单独的queue，消息可能被其他集群消费</p>
+<p><img src="/images/ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95/image-20200226103909918.png" alt="image-20200226103909918"></p>
+<p>采用Topic模型导致，采用topic消息可能被同一集群的相同应用重复消费。：</p>
+<p><img src="/images/ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95/image-20200226103920604.png" alt="image-20200226103920604"></p>
+<h3 id="解决方案一，级联"><a href="#解决方案一，级联" class="headerlink" title="解决方案一，级联"></a>解决方案一，级联</h3><p>将Jms的Topic和Queue进行级联使用</p>
+<p><img src="/images/ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95/image-20200226103931683.png" alt="image-20200226103931683"></p>
+<p><strong>缺点</strong>: 实现方式繁重，需要独立的中转的消息订阅者来完成，多了一次消息的投递和一次消息消费过程，对效率有影响，增加了消息中间件负载压力。</p>
+<h3 id="解决方案二"><a href="#解决方案二" class="headerlink" title="解决方案二"></a>解决方案二</h3><p>ActiveMQ提供了虚拟主题和组合Destinations都可以达到这个效果。</p>
+<h4 id="虚拟Destination"><a href="#虚拟Destination" class="headerlink" title="虚拟Destination"></a>虚拟Destination</h4><p><font color="red">对于消息发布者来说，就是一个正常的Topic，<strong>名称以VirtualTopic</strong>.开头。例如VirtualTopic.vtgroup</font></p>
+<p>对于消息接收端来说，是个队列，不同应用里使用不同的前缀作为队列的名称，即可表明自己的身份即可实现消费端应用分组。</p>
+<blockquote>
+<p>例如Consumer.A.VirtualTopic. vtgroup，说明它是名称为A群组的消费端，同理Consumer.B.VirtualTopic.<br>vtgroup说明是一个名称为B群组的客户端。</p>
+</blockquote>
+<ul>
+<li><strong>默认虚拟主题的前缀是</strong> ：<strong>VirtualTopic</strong>.</li>
+<li><strong>消费虚拟地址默认格式</strong>：<strong>Consumer.*.VirtualTopic.</strong></li>
+</ul>
+<blockquote>
+<p>参见代码，在模块no-spirng包virtualtopic下</p>
+</blockquote>
+<h4 id="组合Destination"><a href="#组合Destination" class="headerlink" title="组合Destination"></a>组合Destination</h4><p>组合队列允许用一个虚拟的destination代表多个destinations。这样就可以通过composite<br>destinations在一个操作中同时向多个destination发送消息。</p>
+<p>多个destination之间采用“,”分割。例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Queue queue = new ActiveMQQueue(&quot;FOO.A,FOO.B,FOO.C&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>或</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Destination destination = session.createQueue(&quot;my-queue,my-queue2&quot;);</span><br></pre></td></tr></table></figure>
+
+<p>如果希望使用不同类型的destination，那么需要加上前缀如queue:// 或topic://，例如：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Queue queue = new ActiveMQQueue(&quot;cd.queue,topic://cd.mark&quot;);</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>参见代码，在模块no-spirng包compositedest下</p>
+</blockquote>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="jthu 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="jthu 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/26/JMS%E5%92%8CActiveMQ%E7%AE%80%E4%BB%8B/" rel="next" title="JMS和ActiveMQ简介">
+                <i class="fa fa-chevron-left"></i> JMS和ActiveMQ简介
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/head.jpg"
+                alt="jthu" />
+            
+              <p class="site-author-name" itemprop="name">jthu</p>
+              <p class="site-description motion-element" itemprop="description">越努力，越幸运！！！</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives">
+              
+                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-name">日志</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-categories">
+                <a href="/categories/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">分类</span>
+                </a>
+              </div>
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-name">标签</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/hicker000/" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="1194928466@qq.com" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://gitee.com/q3" target="_blank" title="码云">
+                      
+                        <i class="fa fa-fw fa-globe"></i>码云</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/81b312556cb8" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-globe"></i>简书</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://macshuo.com/" title="MacTalk" target="_blank">MacTalk</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://example.com/" title="Title" target="_blank">Title</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ActiveMQ高级特性和用法"><span class="nav-text">ActiveMQ高级特性和用法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#嵌入式ActiveMQ"><span class="nav-text">嵌入式ActiveMQ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息存储的持久化"><span class="nav-text">消息存储的持久化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#KahaDB"><span class="nav-text">KahaDB</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关系型数据库存储方案"><span class="nav-text">关系型数据库存储方案</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#消息的持久化订阅"><span class="nav-text">消息的持久化订阅</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#一般topic模式实验："><span class="nav-text">一般topic模式实验：</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#持久Topic消费者端"><span class="nav-text">持久Topic消费者端</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息非持久化"><span class="nav-text">消息非持久化</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息的可靠性"><span class="nav-text">消息的可靠性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#生产者"><span class="nav-text">生产者</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#send方法"><span class="nav-text">send方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#事务消息"><span class="nav-text">事务消息</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#总结"><span class="nav-text">总结</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消费者"><span class="nav-text">消费者</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#AUTO-ACKNOWLEDGE"><span class="nav-text">AUTO_ACKNOWLEDGE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#CLIENT-ACKNOWLEDGE"><span class="nav-text">CLIENT_ACKNOWLEDGE :</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#DUPS-OK-ACKNOWLEDGE"><span class="nav-text">DUPS_OK_ACKNOWLEDGE</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#SESSION-TRANSACTED"><span class="nav-text">SESSION_TRANSACTED</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通配符式订阅"><span class="nav-text">通配符式订阅</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#死信队列"><span class="nav-text">死信队列</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Mirrored-Queue-镜像队列-了解即可"><span class="nav-text">Mirrored Queue 镜像队列(了解即可)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消费者集群下需要考虑的问题"><span class="nav-text">消费者集群下需要考虑的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案一，级联"><span class="nav-text">解决方案一，级联</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#解决方案二"><span class="nav-text">解决方案二</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#虚拟Destination"><span class="nav-text">虚拟Destination</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#组合Destination"><span class="nav-text">组合Destination</span></a></li></ol></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">jthu</span>
+
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">27.9k</span>
+  
+</div>
+
+
+  <div class="powered-by">由 <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a> 强力驱动</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+        
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://hicker000.github.io/2020/02/26/ActiveMQ%E9%AB%98%E7%BA%A7%E7%89%B9%E6%80%A7%E5%92%8C%E7%94%A8%E6%B3%95/';
+          this.page.identifier = '2020/02/26/ActiveMQ高级特性和用法/';
+          this.page.title = 'ActiveMQ高级特性和用法';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
+</html>
