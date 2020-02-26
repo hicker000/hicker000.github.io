@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="面试题," />
 
 
 
@@ -88,14 +88,19 @@
 
 
 
-<meta name="description" content="越努力，越幸运！！！">
-<meta property="og:type" content="website">
-<meta property="og:title" content="jthu的博客">
-<meta property="og:url" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;index.html">
+<meta name="description" content="如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？  RabbitMQ 生产者弄丢了数据 生产者将数据发送到 RabbitMQ 的时候，可能数据就在半路给搞丢了，因为网络问题啥的，都有可能。  此时可以选择用 RabbitMQ 提供的事务功能，就是生产者发送数据之前开启 RabbitMQ 事务channel.txSelect，然后发送消息，如果消息没有成功被 RabbitMQ 接收到，那">
+<meta name="keywords" content="面试题">
+<meta property="og:type" content="article">
+<meta property="og:title" content="保证消息的可靠性">
+<meta property="og:url" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2020&#x2F;02&#x2F;25&#x2F;%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7&#x2F;index.html">
 <meta property="og:site_name" content="jthu的博客">
-<meta property="og:description" content="越努力，越幸运！！！">
+<meta property="og:description" content="如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？  RabbitMQ 生产者弄丢了数据 生产者将数据发送到 RabbitMQ 的时候，可能数据就在半路给搞丢了，因为网络问题啥的，都有可能。  此时可以选择用 RabbitMQ 提供的事务功能，就是生产者发送数据之前开启 RabbitMQ 事务channel.txSelect，然后发送消息，如果消息没有成功被 RabbitMQ 接收到，那">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7&#x2F;image-20200225224640893.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7&#x2F;image-20200225224727268.png">
+<meta property="og:updated_time" content="2020-02-25T14:48:16.389Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7&#x2F;image-20200225224640893.png">
 
 
 
@@ -125,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="https://hicker000.github.io/"/>
+  <link rel="canonical" href="https://hicker000.github.io/2020/02/25/保证消息的可靠性/"/>
 
 
 
 
 
-  <title>jthu的博客</title>
+  <title>保证消息的可靠性 | jthu的博客</title>
   
 
 
@@ -150,8 +155,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband">
 		<a href="https://github.com/hicker000/" target="_blank" rel="noopener"><img width="149" height="149" src="https://github.blog/wp-content/uploads/2008/12/forkme_right_orange_ff7600.png?resize=149%2C149" class="attachment-full size-full" alt="Fork me on GitHub" data-recalc-dims="1" style="position: absolute; top:0; right: 0; border: 0"></a>
 	</div>
@@ -290,408 +294,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hicker000.github.io/2019/11/10/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="jthu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jthu的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/10/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-10T13:30:39+08:00">
-                2019-11-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B5%8B%E8%AF%95/" itemprop="url" rel="index">
-                    <span itemprop="name">测试</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/11/10/hello-world/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/11/10/hello-world/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  77
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  1
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/11/10/hello-world/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hicker000.github.io/2019/11/10/Spring-Boot-Actuator%E7%9B%91%E6%8E%A7%E7%AB%AF%E7%82%B9/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="jthu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jthu的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/10/Spring-Boot-Actuator%E7%9B%91%E6%8E%A7%E7%AB%AF%E7%82%B9/" itemprop="url">Spring Boot Actuator监控端点</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-10T17:25:45+08:00">
-                2019-11-10
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%BE%AE%E6%9C%8D%E5%8A%A1/" itemprop="url" rel="index">
-                    <span itemprop="name">微服务</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/11/10/Spring-Boot-Actuator%E7%9B%91%E6%8E%A7%E7%AB%AF%E7%82%B9/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/11/10/Spring-Boot-Actuator监控端点/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  4.7k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  19
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          Spring Boot Actuator监控端点
-一,初识Actuator
-二,原生端点
-2.1 应用配置类
-autoconfig
-beans
-configprops
-env
-mappings
-info
-
-
-2.2 度量指标类
-metrics
-health
-dump
-trace
-
-
-2.3 操作控制
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/11/10/Spring-Boot-Actuator%E7%9B%91%E6%8E%A7%E7%AB%AF%E7%82%B9/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
 
   
 
@@ -721,9 +326,7 @@ trace
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/25/%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7/" itemprop="url">保证消息的可靠性</a></h1>
+          <h1 class="post-title" itemprop="name headline">保证消息的可靠性</h1>
         
 
         <div class="post-meta">
@@ -837,25 +440,76 @@ trace
       
 
       
-        
-          
-          
-如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？
+        <blockquote>
+<p>如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？</p>
+</blockquote>
+<h3 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h3><p><img src="/images/%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7/image-20200225224640893.png" alt="image-20200225224640893"></p>
+<h4 id="生产者弄丢了数据"><a href="#生产者弄丢了数据" class="headerlink" title="生产者弄丢了数据"></a>生产者弄丢了数据</h4><ul>
+<li><p>生产者将数据发送到 RabbitMQ 的时候，可能数据就在半路给搞丢了，因为网络问题啥的，都有可能。</p>
+</li>
+<li><p>此时可以选择用 RabbitMQ 提供的事务功能，就是生产者<strong>发送数据之前</strong>开启 RabbitMQ 事务<code>channel.txSelect</code>，然后发送消息，如果消息没有成功被 RabbitMQ 接收到，那么生产者会收到异常报错，此时就可以回滚事务<code>channel.txRollback</code>，然后重试发送消息；如果收到了消息，那么可以提交事务<code>channel.txCommit</code>。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 开启事务</span></span><br><span class="line">channel.txSelect</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 这里发送消息</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    channel.txRollback</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里再次重发这条消息</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提交事务</span></span><br><span class="line">channel.txCommit</span><br></pre></td></tr></table></figure>
 
-RabbitMQ
-生产者弄丢了数据
-生产者将数据发送到 RabbitMQ 的时候，可能数据就在半路给搞丢了，因为网络问题啥的，都有可能。
+<blockquote>
+<p> 但是问题是，RabbitMQ 事务机制（同步）一搞，基本上<strong>吞吐量会下来，因为太耗性能</strong>。</p>
+</blockquote>
+<ul>
+<li><p>所以一般来说，如果你要确保说写 RabbitMQ 的消息别丢，可以开启 <code>confirm</code> 模式，在生产者那里设置开启 <code>confirm</code> 模式之后，你每次写的消息都会分配一个唯一的 id，然后如果写入了 RabbitMQ 中，RabbitMQ 会给你回传一个 <code>ack</code> 消息，告诉你说这个消息 ok 了。如果 RabbitMQ 没能处理这个消息，会回调你的一个 <code>nack</code> 接口，告诉你这个消息接收失败，你可以重试。而且你可以结合这个机制自己在内存里维护每个消息 id 的状态，如果超过一定时间还没接收到这个消息的回调，那么你可以重发。</p>
+</li>
+<li><p>事务机制和 <code>confirm</code> 机制最大的不同在于，<strong>事务机制是同步的</strong>，你提交一个事务之后会<strong>阻塞</strong>在那儿，但是 <code>confirm</code> 机制是<strong>异步</strong>的，你发送个消息之后就可以发送下一个消息，然后那个消息 RabbitMQ 接收了之后会异步回调你的一个接口通知你这个消息接收到了。</p>
+</li>
+<li><p>所以一般在生产者这块<strong>避免数据丢失</strong>，都是用 <code>confirm</code> 机制的。</p>
+</li>
+</ul>
+<h4 id="RabbitMQ-弄丢了数据"><a href="#RabbitMQ-弄丢了数据" class="headerlink" title="RabbitMQ 弄丢了数据"></a>RabbitMQ 弄丢了数据</h4><p>就是 RabbitMQ 自己弄丢了数据，这个你必须<strong>开启 RabbitMQ 的持久化</strong>，就是消息写入之后会持久化到磁盘，哪怕是 RabbitMQ 自己挂了，<strong>恢复之后会自动读取之前存储的数据</strong>，一般数据不会丢。除非极其罕见的是，RabbitMQ 还没持久化，自己就挂了，<strong>可能导致少量数据丢失</strong>，但是这个概率较小。</p>
+<p>设置持久化有<strong>两个步骤</strong>：</p>
+<ul>
+<li><p>创建 queue 的时候将其设置为持久化<br><br>这样就可以保证 RabbitMQ 持久化 queue 的元数据，但是它是不会持久化 queue 里的数据的。</p>
+</li>
+<li><p>第二个是发送消息的时候将消息的 <code>deliveryMode</code> 设置为 2<br><br>就是将消息设置为持久化的，此时 RabbitMQ 就会将消息持久化到磁盘上去。</p>
+</li>
+<li><p>必须要同时设置这两个持久化才行，RabbitMQ 哪怕是挂了，再次重启，也会从磁盘上重启恢复 queue，恢复这个 queue 里的数据。</p>
+</li>
+<li><p>注意，哪怕是你给 RabbitMQ 开启了持久化机制，也有一种可能，就是这个消息写到了 RabbitMQ 中，但是还<strong>没来得及持久化到磁盘上</strong>，结果不巧，此时 RabbitMQ 挂了，就会导致内存里的一点点数据丢失。</p>
+</li>
+<li><p>所以，持久化可以跟生产者那边的 <code>confirm</code> 机制配合起来，只有消息被持久化到磁盘之后，才会通知生产者 <code>ack</code> 了，所以哪怕是在持久化到磁盘之前，RabbitMQ 挂了，数据丢了，生产者收不到 <code>ack</code>，你也是可以自己重发的。</p>
+</li>
+</ul>
+<h4 id="消费端弄丢了数据"><a href="#消费端弄丢了数据" class="headerlink" title="消费端弄丢了数据"></a>消费端弄丢了数据</h4><ul>
+<li>如果丢失了数据，主要是因为你消费的时候，<strong>刚消费到，还没处理，结果进程挂了</strong>，比如重启了，那么就尴尬了，RabbitMQ 认为你都消费了，这数据就丢了。</li>
+</ul>
+<ul>
+<li>这个时候得用 RabbitMQ 提供的 <code>ack</code> 机制，简单来说，就是你必须关闭 RabbitMQ 的自动 <code>ack</code>，可以通过一个 api 来调用就行，然后每次你自己代码里确保处理完的时候，再在程序里 <code>ack</code> 一把。这样的话，如果你还没处理完，不就没有 <code>ack</code> 了？那 RabbitMQ 就认为你还没处理完，这个时候 RabbitMQ 会把这个消费分配给别的 consumer 去处理，消息是不会丢的。</li>
+</ul>
+<p><img src="/images/%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7/image-20200225224727268.png" alt="image-20200225224727268"></p>
+<h3 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h3><h4 id="消费端弄丢了数据-1"><a href="#消费端弄丢了数据-1" class="headerlink" title="消费端弄丢了数据"></a>消费端弄丢了数据</h4><ul>
+<li>唯一可能导致消费者弄丢数据的情况，就是说，你消费到了这个消息，然后消费者那边<strong>自动提交了 offset</strong>，让 Kafka 以为你已经消费好了这个消息，但其实你才刚准备处理这个消息，你还没处理，你自己就挂了，此时这条消息就丢咯。</li>
+<li>这不是跟 RabbitMQ 差不多吗，大家都知道 Kafka 会自动提交 offset，那么只要<strong>关闭自动提交</strong> offset，在处理完之后自己手动提交 offset，就可以保证数据不会丢。但是此时确实还是<strong>可能会有重复消费</strong>，比如你刚处理完，还没提交 offset，结果自己挂了，此时肯定会重复消费一次，自己保证幂等性就好了。</li>
+<li>生产环境碰到的一个问题，就是说我们的 Kafka 消费者消费到了数据之后是写到一个内存的 queue 里先缓冲一下，结果有的时候，你刚把消息写入内存 queue，然后消费者会自动提交 offset。然后此时我们重启了系统，就会导致内存 queue 里还没来得及处理的数据就丢失了。</li>
+</ul>
+<h4 id="Kafka-弄丢了数据"><a href="#Kafka-弄丢了数据" class="headerlink" title="Kafka 弄丢了数据"></a>Kafka 弄丢了数据</h4><ul>
+<li>这块比较常见的一个场景，就是 Kafka 某个 broker 宕机，然后重新选举 partition 的 leader。大家想想，要是此时其他的 follower 刚好还有些数据没有同步，结果此时 leader 挂了，然后选举某个 follower 成 leader 之后，不就少了一些数据？这就丢了一些数据啊。</li>
+</ul>
+<ul>
+<li>生产环境也遇到过，我们也是，之前 Kafka 的 leader 机器宕机了，将 follower 切换为 leader 之后，就会发现说这个数据就丢了。</li>
+</ul>
+<p>所以此时一般是要求起码设置如下 4 个参数：</p>
+<ul>
+<li><p>给 topic 设置 <code>replication.factor</code> 参数：这个值必须大于 1，要求每个 partition 必须有至少 2 个副本。</p>
+</li>
+<li><p>在 Kafka 服务端设置 <code>min.insync.replicas</code> 参数：这个值必须大于 1，这个是要求一个 leader 至少感知到有至少一个 follower 还跟自己保持联系，没掉队，这样才能确保 leader 挂了还有一个 follower 吧。</p>
+</li>
+<li><p>在 producer 端设置 <code>acks=all</code>：这个是要求每条数据，必须是<strong>写入所有 replica 之后，才能认为是写成功了</strong>。</p>
+</li>
+<li><p>在 producer 端设置 <code>retries=MAX</code>（很大很大很大的一个值，无限次重试的意思）：这个是<strong>要求一旦写入失败，就无限重试</strong>，卡在这里了。</p>
+</li>
+<li><p>我们生产环境就是按照上述要求配置的，这样配置之后，至少在 Kafka broker 端就可以保证在 leader 所在 broker 发生故障，进行 leader 切换时，数据不会丢失。</p>
+</li>
+</ul>
+<h4 id="生产者会不会弄丢数据？"><a href="#生产者会不会弄丢数据？" class="headerlink" title="生产者会不会弄丢数据？"></a>生产者会不会弄丢数据？</h4><p>如果按照上述的思路设置了 <code>acks=all</code>，一定不会丢，要求是，你的 leader 接收到消息，所有的 follower 都同步到了消息之后，才认为本次写成功了。如果没满足这个条件，生产者会自动不断的重试，重试无限次。</p>
 
-此时可以选择用 RabbitMQ 提供的事务功能，就是生产者发送数据之前开启 RabbitMQ 
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/02/25/%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
       
     </div>
     
@@ -865,410 +519,70 @@ RabbitMQ
     
 
     
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>坚持原创技术分享，您的支持将鼓励我继续创作！</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+      <div id="wechat" style="display: inline-block">
+        <img id="wechat_qr" src="/images/wechatpay.png" alt="jthu 微信支付"/>
+        <p>微信支付</p>
+      </div>
+    
+
+    
+      <div id="alipay" style="display: inline-block">
+        <img id="alipay_qr" src="/images/alipay.png" alt="jthu 支付宝"/>
+        <p>支付宝</p>
+      </div>
+    
+
+    
+
+  </div>
+</div>
+
+      </div>
+    
 
     
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hicker000.github.io/2020/02/25/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="jthu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jthu的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/25/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url">常见面试题</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-25T15:07:14+08:00">
-                2020-02-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url" rel="index">
-                    <span itemprop="name">消息中间件常见面试题</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="tag"># 面试题</a>
           
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/02/25/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/02/25/常见面试题/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  8.9k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  31
-                </span>
-              
-            </div>
-          
-
-          
-
         </div>
-      </header>
-    
+      
 
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
+      
       
       
 
       
-        
-          
-          
-
-为什么使用消息队列？ 其实就是问问你消息队列都有哪些使用场景，然后你项目里具体是什么场景，说说你在这个场景里用消息队列是什么？
-面试官问你这个问题，期望的一个回答是说，你们公司有个什么业务场景，这个业务场景有个什么技术挑战，如果不用MQ可能会很麻烦，但是你现在用了MQ之后带给了你很多的好处。消息
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/02/25/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/02/25/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" rel="next" title="常见面试题">
+                <i class="fa fa-chevron-left"></i> 常见面试题
+              </a>
+            
           </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
 
-    
+          <span class="post-nav-divider"></span>
 
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hicker000.github.io/2020/02/25/%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="jthu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jthu的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2020/02/25/%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F/" itemprop="url">什么是消息中间件？</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
+          <div class="post-nav-prev post-nav-item">
             
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2020-02-25T09:49:00+08:00">
-                2020-02-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index">
-                    <span itemprop="name">消息中间件</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2020/02/25/%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2020/02/25/什么是消息中间件？/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  2.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  8
-                </span>
-              
-            </div>
-          
-
-          
-
+          </div>
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
       
 
       
-        
-          
-          什么是消息中间件？
-
-
-
-
-消息中间件(MQ)的定义其实并没有标准定义。一般认为，消息中间件属于分布式系统中一个子系统，关注于数据的发送和接收，利用高效可靠的异步消息传递机制对分布式系统中的其余各个子系统进行集成。
-
-
-为什么要用消息中间件？假设一个电商交易的场景，用户下单之后调用库存系统减库存，然
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2020/02/25/%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
       
     </footer>
   </div>
@@ -1278,209 +592,11 @@ RabbitMQ
   </article>
 
 
-    
-      
 
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://hicker000.github.io/2019/11/25/nginx%E5%9F%BA%E7%A1%80/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="jthu">
-      <meta itemprop="description" content="">
-      <meta itemprop="image" content="/images/head.jpg">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="jthu的博客">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/11/25/nginx%E5%9F%BA%E7%A1%80/" itemprop="url">nginx基础</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-11-25T17:00:50+08:00">
-                2019-11-25
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-            <span class="post-category" >
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">分类于</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E4%B8%93%E9%A2%98/" itemprop="url" rel="index">
-                    <span itemprop="name">分布式专题</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                <span class="post-meta-divider">|</span>
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-comment-o"></i>
-                </span>
-                <a href="/2019/11/25/nginx%E5%9F%BA%E7%A1%80/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2019/11/25/nginx基础/" itemprop="commentCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-          
-
-          
-
-          
-            <div class="post-wordcount">
-              
-                
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-file-word-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">字数统计&#58;</span>
-                
-                <span title="字数统计">
-                  3.6k
-                </span>
-              
-
-              
-                <span class="post-meta-divider">|</span>
-              
-
-              
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-clock-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
-                
-                <span title="阅读时长">
-                  13
-                </span>
-              
-            </div>
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-          nginx基础
-一、Nginx简介
-二，Nginx架构设计
-三、nginx安装
-四、文件结构以及模型概念
-五、Nginx日志
-
-
-一，Nginx简介Apache
-Apache仍然是时长占用量最高的web服务器，据最新数据统计，市场占有率目前是50%左右。主要优势在于一个是比较早出现的一个Http静态
-          ...
-          <!--noindex-->
-          <div class="post-button text-center">
-            <a class="btn" href="/2019/11/25/nginx%E5%9F%BA%E7%A1%80/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-          <!--/noindex-->
-        
+    <div class="post-spread">
       
     </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
   </div>
-  
-  
-  
-  </article>
-
-
-    
-  </section>
-
-  
 
 
           </div>
@@ -1488,6 +604,20 @@ Apache仍然是时长占用量最高的web服务器，据最新数据统计，�
 
 
           
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript" target="_blank" rel="noopener">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    </div>
+
+  
+
+
 
         </div>
         
@@ -1508,8 +638,17 @@ Apache仍然是时长占用量最高的web服务器，据最新数据统计，�
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -1626,6 +765,22 @@ Apache仍然是时长占用量最高的web服务器，据最新数据统计，�
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#RabbitMQ"><span class="nav-text">RabbitMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生产者弄丢了数据"><span class="nav-text">生产者弄丢了数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RabbitMQ-弄丢了数据"><span class="nav-text">RabbitMQ 弄丢了数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消费端弄丢了数据"><span class="nav-text">消费端弄丢了数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka"><span class="nav-text">Kafka</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#消费端弄丢了数据-1"><span class="nav-text">消费端弄丢了数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Kafka-弄丢了数据"><span class="nav-text">Kafka 弄丢了数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#生产者会不会弄丢数据？"><span class="nav-text">生产者会不会弄丢数据？</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1784,6 +939,10 @@ Apache仍然是时长占用量最高的web服务器，据最新数据统计，�
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1801,6 +960,18 @@ Apache仍然是时长占用量最高的web服务器，据最新数据统计，�
       <script id="dsq-count-scr" src="https://.disqus.com/count.js" async></script>
     
 
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://hicker000.github.io/2020/02/25/%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7/';
+          this.page.identifier = '2020/02/25/保证消息的可靠性/';
+          this.page.title = '保证消息的可靠性';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
     
 
   

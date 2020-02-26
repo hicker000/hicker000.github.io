@@ -1,9 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>保证消息的可靠性</title>
+    <url>/2020/02/25/%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7/</url>
+    <content><![CDATA[<blockquote>
+<p>如何保证消息的可靠性传输？或者说，如何处理消息丢失的问题？</p>
+</blockquote>
+<h3 id="RabbitMQ"><a href="#RabbitMQ" class="headerlink" title="RabbitMQ"></a>RabbitMQ</h3><p><img src="/images/%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7/image-20200225224640893.png" alt="image-20200225224640893"></p>
+<h4 id="生产者弄丢了数据"><a href="#生产者弄丢了数据" class="headerlink" title="生产者弄丢了数据"></a>生产者弄丢了数据</h4><ul>
+<li><p>生产者将数据发送到 RabbitMQ 的时候，可能数据就在半路给搞丢了，因为网络问题啥的，都有可能。</p>
+</li>
+<li><p>此时可以选择用 RabbitMQ 提供的事务功能，就是生产者<strong>发送数据之前</strong>开启 RabbitMQ 事务<code>channel.txSelect</code>，然后发送消息，如果消息没有成功被 RabbitMQ 接收到，那么生产者会收到异常报错，此时就可以回滚事务<code>channel.txRollback</code>，然后重试发送消息；如果收到了消息，那么可以提交事务<code>channel.txCommit</code>。</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 开启事务</span></span><br><span class="line">channel.txSelect</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="comment">// 这里发送消息</span></span><br><span class="line">&#125; <span class="keyword">catch</span> (Exception e) &#123;</span><br><span class="line">    channel.txRollback</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 这里再次重发这条消息</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 提交事务</span></span><br><span class="line">channel.txCommit</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p> 但是问题是，RabbitMQ 事务机制（同步）一搞，基本上<strong>吞吐量会下来，因为太耗性能</strong>。</p>
+</blockquote>
+<ul>
+<li><p>所以一般来说，如果你要确保说写 RabbitMQ 的消息别丢，可以开启 <code>confirm</code> 模式，在生产者那里设置开启 <code>confirm</code> 模式之后，你每次写的消息都会分配一个唯一的 id，然后如果写入了 RabbitMQ 中，RabbitMQ 会给你回传一个 <code>ack</code> 消息，告诉你说这个消息 ok 了。如果 RabbitMQ 没能处理这个消息，会回调你的一个 <code>nack</code> 接口，告诉你这个消息接收失败，你可以重试。而且你可以结合这个机制自己在内存里维护每个消息 id 的状态，如果超过一定时间还没接收到这个消息的回调，那么你可以重发。</p>
+</li>
+<li><p>事务机制和 <code>confirm</code> 机制最大的不同在于，<strong>事务机制是同步的</strong>，你提交一个事务之后会<strong>阻塞</strong>在那儿，但是 <code>confirm</code> 机制是<strong>异步</strong>的，你发送个消息之后就可以发送下一个消息，然后那个消息 RabbitMQ 接收了之后会异步回调你的一个接口通知你这个消息接收到了。</p>
+</li>
+<li><p>所以一般在生产者这块<strong>避免数据丢失</strong>，都是用 <code>confirm</code> 机制的。</p>
+</li>
+</ul>
+<h4 id="RabbitMQ-弄丢了数据"><a href="#RabbitMQ-弄丢了数据" class="headerlink" title="RabbitMQ 弄丢了数据"></a>RabbitMQ 弄丢了数据</h4><p>就是 RabbitMQ 自己弄丢了数据，这个你必须<strong>开启 RabbitMQ 的持久化</strong>，就是消息写入之后会持久化到磁盘，哪怕是 RabbitMQ 自己挂了，<strong>恢复之后会自动读取之前存储的数据</strong>，一般数据不会丢。除非极其罕见的是，RabbitMQ 还没持久化，自己就挂了，<strong>可能导致少量数据丢失</strong>，但是这个概率较小。</p>
+<p>设置持久化有<strong>两个步骤</strong>：</p>
+<ul>
+<li><p>创建 queue 的时候将其设置为持久化<br><br>这样就可以保证 RabbitMQ 持久化 queue 的元数据，但是它是不会持久化 queue 里的数据的。</p>
+</li>
+<li><p>第二个是发送消息的时候将消息的 <code>deliveryMode</code> 设置为 2<br><br>就是将消息设置为持久化的，此时 RabbitMQ 就会将消息持久化到磁盘上去。</p>
+</li>
+<li><p>必须要同时设置这两个持久化才行，RabbitMQ 哪怕是挂了，再次重启，也会从磁盘上重启恢复 queue，恢复这个 queue 里的数据。</p>
+</li>
+<li><p>注意，哪怕是你给 RabbitMQ 开启了持久化机制，也有一种可能，就是这个消息写到了 RabbitMQ 中，但是还<strong>没来得及持久化到磁盘上</strong>，结果不巧，此时 RabbitMQ 挂了，就会导致内存里的一点点数据丢失。</p>
+</li>
+<li><p>所以，持久化可以跟生产者那边的 <code>confirm</code> 机制配合起来，只有消息被持久化到磁盘之后，才会通知生产者 <code>ack</code> 了，所以哪怕是在持久化到磁盘之前，RabbitMQ 挂了，数据丢了，生产者收不到 <code>ack</code>，你也是可以自己重发的。</p>
+</li>
+</ul>
+<h4 id="消费端弄丢了数据"><a href="#消费端弄丢了数据" class="headerlink" title="消费端弄丢了数据"></a>消费端弄丢了数据</h4><ul>
+<li>如果丢失了数据，主要是因为你消费的时候，<strong>刚消费到，还没处理，结果进程挂了</strong>，比如重启了，那么就尴尬了，RabbitMQ 认为你都消费了，这数据就丢了。</li>
+</ul>
+<ul>
+<li>这个时候得用 RabbitMQ 提供的 <code>ack</code> 机制，简单来说，就是你必须关闭 RabbitMQ 的自动 <code>ack</code>，可以通过一个 api 来调用就行，然后每次你自己代码里确保处理完的时候，再在程序里 <code>ack</code> 一把。这样的话，如果你还没处理完，不就没有 <code>ack</code> 了？那 RabbitMQ 就认为你还没处理完，这个时候 RabbitMQ 会把这个消费分配给别的 consumer 去处理，消息是不会丢的。</li>
+</ul>
+<p><img src="/images/%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7/image-20200225224727268.png" alt="image-20200225224727268"></p>
+<h3 id="Kafka"><a href="#Kafka" class="headerlink" title="Kafka"></a>Kafka</h3><h4 id="消费端弄丢了数据-1"><a href="#消费端弄丢了数据-1" class="headerlink" title="消费端弄丢了数据"></a>消费端弄丢了数据</h4><ul>
+<li>唯一可能导致消费者弄丢数据的情况，就是说，你消费到了这个消息，然后消费者那边<strong>自动提交了 offset</strong>，让 Kafka 以为你已经消费好了这个消息，但其实你才刚准备处理这个消息，你还没处理，你自己就挂了，此时这条消息就丢咯。</li>
+<li>这不是跟 RabbitMQ 差不多吗，大家都知道 Kafka 会自动提交 offset，那么只要<strong>关闭自动提交</strong> offset，在处理完之后自己手动提交 offset，就可以保证数据不会丢。但是此时确实还是<strong>可能会有重复消费</strong>，比如你刚处理完，还没提交 offset，结果自己挂了，此时肯定会重复消费一次，自己保证幂等性就好了。</li>
+<li>生产环境碰到的一个问题，就是说我们的 Kafka 消费者消费到了数据之后是写到一个内存的 queue 里先缓冲一下，结果有的时候，你刚把消息写入内存 queue，然后消费者会自动提交 offset。然后此时我们重启了系统，就会导致内存 queue 里还没来得及处理的数据就丢失了。</li>
+</ul>
+<h4 id="Kafka-弄丢了数据"><a href="#Kafka-弄丢了数据" class="headerlink" title="Kafka 弄丢了数据"></a>Kafka 弄丢了数据</h4><ul>
+<li>这块比较常见的一个场景，就是 Kafka 某个 broker 宕机，然后重新选举 partition 的 leader。大家想想，要是此时其他的 follower 刚好还有些数据没有同步，结果此时 leader 挂了，然后选举某个 follower 成 leader 之后，不就少了一些数据？这就丢了一些数据啊。</li>
+</ul>
+<ul>
+<li>生产环境也遇到过，我们也是，之前 Kafka 的 leader 机器宕机了，将 follower 切换为 leader 之后，就会发现说这个数据就丢了。</li>
+</ul>
+<p>所以此时一般是要求起码设置如下 4 个参数：</p>
+<ul>
+<li><p>给 topic 设置 <code>replication.factor</code> 参数：这个值必须大于 1，要求每个 partition 必须有至少 2 个副本。</p>
+</li>
+<li><p>在 Kafka 服务端设置 <code>min.insync.replicas</code> 参数：这个值必须大于 1，这个是要求一个 leader 至少感知到有至少一个 follower 还跟自己保持联系，没掉队，这样才能确保 leader 挂了还有一个 follower 吧。</p>
+</li>
+<li><p>在 producer 端设置 <code>acks=all</code>：这个是要求每条数据，必须是<strong>写入所有 replica 之后，才能认为是写成功了</strong>。</p>
+</li>
+<li><p>在 producer 端设置 <code>retries=MAX</code>（很大很大很大的一个值，无限次重试的意思）：这个是<strong>要求一旦写入失败，就无限重试</strong>，卡在这里了。</p>
+</li>
+<li><p>我们生产环境就是按照上述要求配置的，这样配置之后，至少在 Kafka broker 端就可以保证在 leader 所在 broker 发生故障，进行 leader 切换时，数据不会丢失。</p>
+</li>
+</ul>
+<h4 id="生产者会不会弄丢数据？"><a href="#生产者会不会弄丢数据？" class="headerlink" title="生产者会不会弄丢数据？"></a>生产者会不会弄丢数据？</h4><p>如果按照上述的思路设置了 <code>acks=all</code>，一定不会丢，要求是，你的 leader 接收到消息，所有的 follower 都同步到了消息之后，才认为本次写成功了。如果没满足这个条件，生产者会自动不断的重试，重试无限次。</p>
+]]></content>
+      <categories>
+        <category>消息中间件</category>
+      </categories>
+      <tags>
+        <tag>面试题</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>常见面试题</title>
     <url>/2020/02/25/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
-    <content><![CDATA[<h1 id="常见面试题"><a href="#常见面试题" class="headerlink" title="常见面试题"></a>常见面试题</h1><p>[toc]</p>
+    <content><![CDATA[<!-- toc -->
+
 <h2 id="为什么使用消息队列？"><a href="#为什么使用消息队列？" class="headerlink" title="为什么使用消息队列？ "></a>为什么使用消息队列？ </h2><p>其实就是问问你消息队列都有哪些使用场景，然后你项目里具体是什么场景，说说你在这个场景里用消息队列是什么？</p>
 <p>面试官问你这个问题，期望的一个回答是说，你们公司有个什么业务场景，这个业务场景有个什么技术挑战，如果不用MQ可能会很麻烦，但是你现在用了MQ之后带给了你很多的好处。消息队列的常见使用场景，其实场景有很多，但是比较核心的有3个：解耦、异步、削峰。</p>
 <h3 id="解耦："><a href="#解耦：" class="headerlink" title="解耦："></a>解耦：</h3><p>A系统发送个数据到BCD三个系统，接口调用发送，那如果E系统也要这个数据呢？那如果C系统现在不需要了呢？现在A系统又要发送第二种数据了呢？而且A系统要时时刻刻考虑BCDE四个系统如果挂了咋办？要不要重发？我要不要把消息存起来？</p>
@@ -13,7 +94,7 @@
 <li>300 + 450 + 200 =<br>980ms，接近1s，异步后，BCD三个系统分别写库的时间，A系统就不再考虑了。</li>
 </ul>
 <h3 id="削峰："><a href="#削峰：" class="headerlink" title="削峰："></a>削峰：</h3><p>每天0点到16点，A系统风平浪静，每秒并发请求数量就100个。结果每次一到16点~23点，每秒并发请求数量突然会暴增到1万条。但是系统最大的处理能力就只能是每秒钟处理1000个请求啊。怎么办？需要我们进行流量的削峰，让系统可以平缓的处理突增的请求。</p>
-<p><img src="../images/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/image-20200225151117157.png" alt="image-20200225151117157"></p>
+<p><img src="/images/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/image-20200225155001340.png" alt="image-20200225155001340"></p>
 <h2 id="消息队列有什么优点和缺点"><a href="#消息队列有什么优点和缺点" class="headerlink" title="消息队列有什么优点和缺点?"></a>消息队列有什么优点和缺点?</h2><p>优点上面已经说了，就是在特殊场景下有其对应的好处，解耦、异步、削峰。</p>
 <p>缺点呢？</p>
 <h3 id="系统可用性降低"><a href="#系统可用性降低" class="headerlink" title="系统可用性降低"></a>系统可用性降低</h3><p>系统引入的外部依赖越多，越容易挂掉，本来你就是A系统调用BCD三个系统的接口就好了，ABCD四个系统好好的，没啥问题，你偏加个MQ进来，万一MQ挂了怎么办？MQ挂了，整套系统崩溃了，业务也就停顿了。</p>
@@ -109,11 +190,11 @@
 <p>queue = new ActiveMQQueue(“TEST.QUEUE?consumer.exclusive=true”);</p>
 <p>consumer = session.createConsumer(queue);</p>
 <p>当在接收信息的时候，有多个独占消费者的时候，只有一个独占消费者可以接收到消息。</p>
-<p><img src="../images/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/image-20200225151146950.png" alt="image-20200225151146950"></p>
+<p><img src="/images/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/image-20200225155018371.png" alt="image-20200225155018371"></p>
 <p>独占消息就是在有多个消费者同时消费一个queue时，可以保证只有一个消费者可以消费消息，这样虽然保证了消息的顺序问题，不过也带来了一个问题，就是这个queue的所有消息将只会在这一个主消费者上消费，其他消费者将闲置，达不到负载均衡分配，而实际业务我们可能更多的是这样的场景，比如一个订单会发出一组顺序消息，我们只要求这一组消息是顺序消费的，而订单与订单之间又是可以并行消费的，不需要顺序，因为顺序也没有任何意义，有没有办法做到呢？可以利用activemq的另一个高级特性之messageGroup</p>
 <p>2、利用Activemq的高级特性：messageGroups</p>
 <p>Message<br>Groups特性是一种负载均衡的机制。在一个消息被分发到consumer之前，broker首先检查消息JMSXGroupID属性。如果存在，那么broker会检查是否有某个consumer拥有这个message<br>group。如果没有，那么broker会选择一个consumer，并将它关联到这个message<br>group。此后，这个consumer会接收这个message<br>group的所有消息，直到：Consumer被关闭。Message<br>group被关闭，通过发送一个消息，并设置这个消息的JMSXGroupSeq为-1</p>
-<p><img src="../images/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/image-20200225151200609.png" alt="image-20200225151200609"></p>
+<p><img src="/images/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/image-20200225155029440.png" alt="image-20200225155029440"></p>
 <p><strong>bytesMessage</strong>.setStringProperty(“JMSXGroupID”, “constact-20100000002”);</p>
 <p><strong>bytesMessage</strong>.setIntProperty(“JMSXGroupSeq”, -1);</p>
 <p>如上图所示，同一个queue中，拥有相同JMSXGroupID的消息将发往同一个消费者，解决顺序问题，不同分组的消息又能被其他消费者并行消费，解决负载均衡的问题。</p>
@@ -178,14 +259,19 @@
 <p><a href="https://blog.csdn.net/wugenqiang/article/details/88609066" target="_blank" rel="noopener">https://blog.csdn.net/wugenqiang/article/details/88609066</a></p>
 ]]></content>
       <categories>
-        <category>消息中间件</category>
+        <category>消息中间件常见面试题</category>
       </categories>
   </entry>
   <entry>
     <title>什么是消息中间件？</title>
     <url>/2020/02/25/%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F/</url>
-    <content><![CDATA[<h1 id="什么是消息中间件？"><a href="#什么是消息中间件？" class="headerlink" title="什么是消息中间件？"></a>什么是消息中间件？</h1><p>[toc]</p>
+    <content><![CDATA[<h1 id="什么是消息中间件？"><a href="#什么是消息中间件？" class="headerlink" title="什么是消息中间件？"></a>什么是消息中间件？</h1><!-- toc -->
+
+
+
+
 <h2 id="消息中间件-MQ-的定义"><a href="#消息中间件-MQ-的定义" class="headerlink" title="消息中间件(MQ)的定义"></a>消息中间件(MQ)的定义</h2><p>其实并没有标准定义。一般认为，消息中间件属于分布式系统中一个子系统，关注于数据的发送和接收，利用高效可靠的异步消息传递机制对分布式系统中的其余各个子系统进行集成。</p>
+<p><img src="img%5Cimage-20200225144411023.png" alt="image-20200225144411023"></p>
 <p><img src="E:images%5Cimage-20200225140502618-1582610711570.png" alt="image-20200225140502618"></p>
 <h2 id="为什么要用消息中间件？"><a href="#为什么要用消息中间件？" class="headerlink" title="为什么要用消息中间件？"></a>为什么要用消息中间件？</h2><p>假设一个电商交易的场景，用户下单之后调用库存系统减库存，然后需要调用物流系统进行发货，如果交易、库存、物流是属于一个系统的，那么就是接口调用。但是随着系统的发展，各个模块越来越庞大、业务逻辑越来越复杂，必然是要做服务化和业务拆分的。这个时候就需要考虑这些系统之间如何交互，第一反应就是RPC（Remote<br>Procedure<br>Call）。系统继续发展，可能一笔交易后续需要调用几十个接口来执行业务，比如还有风控系统、短信服务等等。这个时候就需要消息中间件登场来解决问题了。</p>
 <p>所以消息中间件主要解决分布式系统之间消息的传递，同时为分布式系统中其他子系统提供了伸缩性和扩展性。为系统带来了：</p>
@@ -285,7 +371,7 @@
 <p>2、负载功能（与高并发高可用对应）：对后台服务器集群进行负载</p>
 <p>3、静态服务器（比tomcat性能高很多）：在mvvm模式中，充当文件读取职责</p>
 <p>总结：实际使用中，这三项功用，会混合使用。比如先分离动静，再路由服务，再负载机器</p>
-<h3 id="正向代理与反向代理"><a href="#正向代理与反向代理" class="headerlink" title="正向代理与反向代理"></a><strong>正向代理与反向代理</strong></h3><p>1、<strong>代理</strong>：意思是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。</p>
+<h3 id="正向代理与反向代理"><a href="#正向代理与反向代理" class="headerlink" title="正向代理与反向代理"></a>正向代理与反向代理</h3><p>1、<strong>代理</strong>：意思是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。</p>
 <p><img src="5FB528CD197C4970A0F9249E8D78ABD1" alt="image"></p>
 <p>比如代理律师，代购，政府机关办事的代理人等等。</p>
 <p>2、<strong>反向代理</strong>（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>

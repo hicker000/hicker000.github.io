@@ -103,7 +103,7 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;nginx%E5%9F%BA%E7%A1%80&#x2F;EB3C80B075DB4ADE8F35DB7B6E011F32">
 <meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;nginx%E5%9F%BA%E7%A1%80&#x2F;BAB3479FD5F54DBBBB5C71A811F53F96">
 <meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;nginx%E5%9F%BA%E7%A1%80&#x2F;498BFE42F9F34978891B411C4F115E22">
-<meta property="og:updated_time" content="2019-11-25T09:04:05.254Z">
+<meta property="og:updated_time" content="2020-02-25T14:46:23.039Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2019&#x2F;11&#x2F;25&#x2F;nginx%E5%9F%BA%E7%A1%80&#x2F;5FB528CD197C4970A0F9249E8D78ABD1">
 
@@ -115,7 +115,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -249,9 +249,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" target="_blank" rel="noopener" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -379,7 +413,19 @@
               
 
               
+                <span class="post-meta-divider">|</span>
+              
 
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  13
+                </span>
               
             </div>
           
@@ -422,7 +468,7 @@
 <p>2、负载功能（与高并发高可用对应）：对后台服务器集群进行负载</p>
 <p>3、静态服务器（比tomcat性能高很多）：在mvvm模式中，充当文件读取职责</p>
 <p>总结：实际使用中，这三项功用，会混合使用。比如先分离动静，再路由服务，再负载机器</p>
-<h3 id="正向代理与反向代理"><a href="#正向代理与反向代理" class="headerlink" title="正向代理与反向代理"></a><strong>正向代理与反向代理</strong></h3><p>1、<strong>代理</strong>：意思是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。</p>
+<h3 id="正向代理与反向代理"><a href="#正向代理与反向代理" class="headerlink" title="正向代理与反向代理"></a>正向代理与反向代理</h3><p>1、<strong>代理</strong>：意思是一个位于客户端和原始服务器(origin server)之间的服务器，为了从原始服务器取得内容，客户端向代理发送一个请求并指定目标(原始服务器)，然后代理向原始服务器转交请求并将获得的内容返回给客户端。</p>
 <p><img src="5FB528CD197C4970A0F9249E8D78ABD1" alt="image"></p>
 <p>比如代理律师，代购，政府机关办事的代理人等等。</p>
 <p>2、<strong>反向代理</strong>（Reverse Proxy）方式是指以代理服务器来接受internet上的连接请求，然后将请求转发给内部网络上的服务器，并将从服务器上得到的结果返回给internet上请求连接的客户端，此时代理服务器对外就表现为一个反向代理服务器。</p>
@@ -786,7 +832,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -797,7 +843,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -808,7 +854,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -860,7 +906,7 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
               <div class="links-of-blogroll-title">
                 <i class="fa  fa-fw fa-link"></i>
                 Links
@@ -894,7 +940,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#nginx基础"><span class="nav-number">1.</span> <span class="nav-text">nginx基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一，Nginx简介"><span class="nav-number">1.1.</span> <span class="nav-text">一，Nginx简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">1.1.1.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构中的作用"><span class="nav-number">1.1.2.</span> <span class="nav-text">架构中的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正向代理与反向代理"><span class="nav-number">1.1.3.</span> <span class="nav-text">正向代理与反向代理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二，Nginx架构设计"><span class="nav-number">1.2.</span> <span class="nav-text">二，Nginx架构设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1。-Nginx的模块化设计"><span class="nav-number">1.2.1.</span> <span class="nav-text">2.1。 Nginx的模块化设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Nginx多进程模型"><span class="nav-number">1.2.2.</span> <span class="nav-text">2.2. Nginx多进程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Nginx的epoll模式"><span class="nav-number">1.2.3.</span> <span class="nav-text">2.3. Nginx的epoll模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三，nginx安装："><span class="nav-number">1.3.</span> <span class="nav-text">三，nginx安装：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-源码编译方式"><span class="nav-number">1.3.1.</span> <span class="nav-text">3.1. 源码编译方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-yum方式："><span class="nav-number">1.3.2.</span> <span class="nav-text">3.2. yum方式：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四，文件结构以及模型概念："><span class="nav-number">1.4.</span> <span class="nav-text">四，文件结构以及模型概念：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-目录结构"><span class="nav-number">1.4.1.</span> <span class="nav-text">4.1. 目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-nginx模型概念："><span class="nav-number">1.4.2.</span> <span class="nav-text">4.2. nginx模型概念：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-nginx-conf配置文件结构"><span class="nav-number">1.4.3.</span> <span class="nav-text">4.3. nginx.conf配置文件结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五，Nginx日志"><span class="nav-number">1.4.4.</span> <span class="nav-text">五，Nginx日志</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#nginx基础"><span class="nav-text">nginx基础</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#一，Nginx简介"><span class="nav-text">一，Nginx简介</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#架构中的作用"><span class="nav-text">架构中的作用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#正向代理与反向代理"><span class="nav-text">正向代理与反向代理</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二，Nginx架构设计"><span class="nav-text">二，Nginx架构设计</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1。-Nginx的模块化设计"><span class="nav-text">2.1。 Nginx的模块化设计</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-Nginx多进程模型"><span class="nav-text">2.2. Nginx多进程模型</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-3-Nginx的epoll模式"><span class="nav-text">2.3. Nginx的epoll模式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三，nginx安装："><span class="nav-text">三，nginx安装：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-源码编译方式"><span class="nav-text">3.1. 源码编译方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-yum方式："><span class="nav-text">3.2. yum方式：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#四，文件结构以及模型概念："><span class="nav-text">四，文件结构以及模型概念：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#4-1-目录结构"><span class="nav-text">4.1. 目录结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-2-nginx模型概念："><span class="nav-text">4.2. nginx模型概念：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-3-nginx-conf配置文件结构"><span class="nav-text">4.3. nginx.conf配置文件结构</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#五，Nginx日志"><span class="nav-text">五，Nginx日志</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -902,6 +948,13 @@
       <!--/noindex-->
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
       
 
     </div>
@@ -920,6 +973,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">jthu</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">21.7k</span>
   
 </div>
 
@@ -949,11 +1011,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
@@ -1113,6 +1170,323 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 

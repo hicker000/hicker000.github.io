@@ -88,19 +88,19 @@
 
 
 
-<meta name="description" content="常见面试题[toc] 为什么使用消息队列？ 其实就是问问你消息队列都有哪些使用场景，然后你项目里具体是什么场景，说说你在这个场景里用消息队列是什么？ 面试官问你这个问题，期望的一个回答是说，你们公司有个什么业务场景，这个业务场景有个什么技术挑战，如果不用MQ可能会很麻烦，但是你现在用了MQ之后带给了你很多的好处。消息队列的常见使用场景，其实场景有很多，但是比较核心的有3个：解耦、异步、削峰。 解耦">
+<meta name="description" content="为什么使用消息队列？ 其实就是问问你消息队列都有哪些使用场景，然后你项目里具体是什么场景，说说你在这个场景里用消息队列是什么？ 面试官问你这个问题，期望的一个回答是说，你们公司有个什么业务场景，这个业务场景有个什么技术挑战，如果不用MQ可能会很麻烦，但是你现在用了MQ之后带给了你很多的好处。消息队列的常见使用场景，其实场景有很多，但是比较核心的有3个：解耦、异步、削峰。 解耦：A系统发送个数据">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常见面试题">
 <meta property="og:url" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2020&#x2F;02&#x2F;25&#x2F;%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&#x2F;index.html">
 <meta property="og:site_name" content="jthu的博客">
-<meta property="og:description" content="常见面试题[toc] 为什么使用消息队列？ 其实就是问问你消息队列都有哪些使用场景，然后你项目里具体是什么场景，说说你在这个场景里用消息队列是什么？ 面试官问你这个问题，期望的一个回答是说，你们公司有个什么业务场景，这个业务场景有个什么技术挑战，如果不用MQ可能会很麻烦，但是你现在用了MQ之后带给了你很多的好处。消息队列的常见使用场景，其实场景有很多，但是比较核心的有3个：解耦、异步、削峰。 解耦">
+<meta property="og:description" content="为什么使用消息队列？ 其实就是问问你消息队列都有哪些使用场景，然后你项目里具体是什么场景，说说你在这个场景里用消息队列是什么？ 面试官问你这个问题，期望的一个回答是说，你们公司有个什么业务场景，这个业务场景有个什么技术挑战，如果不用MQ可能会很麻烦，但是你现在用了MQ之后带给了你很多的好处。消息队列的常见使用场景，其实场景有很多，但是比较核心的有3个：解耦、异步、削峰。 解耦：A系统发送个数据">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2020&#x2F;02&#x2F;25&#x2F;images&#x2F;%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&#x2F;image-20200225151117157.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2020&#x2F;02&#x2F;25&#x2F;images&#x2F;%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&#x2F;image-20200225151146950.png">
-<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2020&#x2F;02&#x2F;25&#x2F;images&#x2F;%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&#x2F;image-20200225151200609.png">
-<meta property="og:updated_time" content="2020-02-25T07:12:35.454Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&#x2F;image-20200225155001340.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&#x2F;image-20200225155018371.png">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&#x2F;image-20200225155029440.png">
+<meta property="og:updated_time" content="2020-02-25T13:11:44.883Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2020&#x2F;02&#x2F;25&#x2F;images&#x2F;%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&#x2F;image-20200225151117157.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;images&#x2F;%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98&#x2F;image-20200225155001340.png">
 
 
 
@@ -110,7 +110,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -244,9 +244,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" target="_blank" rel="noopener" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -327,8 +361,8 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6/" itemprop="url" rel="index">
-                    <span itemprop="name">消息中间件</span>
+                  <a href="/categories/%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/" itemprop="url" rel="index">
+                    <span itemprop="name">消息中间件常见面试题</span>
                   </a>
                 </span>
 
@@ -374,7 +408,19 @@
               
 
               
+                <span class="post-meta-divider">|</span>
+              
 
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  31
+                </span>
               
             </div>
           
@@ -394,7 +440,8 @@
       
 
       
-        <h1 id="常见面试题"><a href="#常见面试题" class="headerlink" title="常见面试题"></a>常见面试题</h1><p>[toc]</p>
+        <!-- toc -->
+
 <h2 id="为什么使用消息队列？"><a href="#为什么使用消息队列？" class="headerlink" title="为什么使用消息队列？ "></a>为什么使用消息队列？ </h2><p>其实就是问问你消息队列都有哪些使用场景，然后你项目里具体是什么场景，说说你在这个场景里用消息队列是什么？</p>
 <p>面试官问你这个问题，期望的一个回答是说，你们公司有个什么业务场景，这个业务场景有个什么技术挑战，如果不用MQ可能会很麻烦，但是你现在用了MQ之后带给了你很多的好处。消息队列的常见使用场景，其实场景有很多，但是比较核心的有3个：解耦、异步、削峰。</p>
 <h3 id="解耦："><a href="#解耦：" class="headerlink" title="解耦："></a>解耦：</h3><p>A系统发送个数据到BCD三个系统，接口调用发送，那如果E系统也要这个数据呢？那如果C系统现在不需要了呢？现在A系统又要发送第二种数据了呢？而且A系统要时时刻刻考虑BCDE四个系统如果挂了咋办？要不要重发？我要不要把消息存起来？</p>
@@ -404,7 +451,7 @@
 <li>300 + 450 + 200 =<br>980ms，接近1s，异步后，BCD三个系统分别写库的时间，A系统就不再考虑了。</li>
 </ul>
 <h3 id="削峰："><a href="#削峰：" class="headerlink" title="削峰："></a>削峰：</h3><p>每天0点到16点，A系统风平浪静，每秒并发请求数量就100个。结果每次一到16点~23点，每秒并发请求数量突然会暴增到1万条。但是系统最大的处理能力就只能是每秒钟处理1000个请求啊。怎么办？需要我们进行流量的削峰，让系统可以平缓的处理突增的请求。</p>
-<p><img src="../images/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/image-20200225151117157.png" alt="image-20200225151117157"></p>
+<p><img src="/images/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/image-20200225155001340.png" alt="image-20200225155001340"></p>
 <h2 id="消息队列有什么优点和缺点"><a href="#消息队列有什么优点和缺点" class="headerlink" title="消息队列有什么优点和缺点?"></a>消息队列有什么优点和缺点?</h2><p>优点上面已经说了，就是在特殊场景下有其对应的好处，解耦、异步、削峰。</p>
 <p>缺点呢？</p>
 <h3 id="系统可用性降低"><a href="#系统可用性降低" class="headerlink" title="系统可用性降低"></a>系统可用性降低</h3><p>系统引入的外部依赖越多，越容易挂掉，本来你就是A系统调用BCD三个系统的接口就好了，ABCD四个系统好好的，没啥问题，你偏加个MQ进来，万一MQ挂了怎么办？MQ挂了，整套系统崩溃了，业务也就停顿了。</p>
@@ -500,11 +547,11 @@
 <p>queue = new ActiveMQQueue(“TEST.QUEUE?consumer.exclusive=true”);</p>
 <p>consumer = session.createConsumer(queue);</p>
 <p>当在接收信息的时候，有多个独占消费者的时候，只有一个独占消费者可以接收到消息。</p>
-<p><img src="../images/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/image-20200225151146950.png" alt="image-20200225151146950"></p>
+<p><img src="/images/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/image-20200225155018371.png" alt="image-20200225155018371"></p>
 <p>独占消息就是在有多个消费者同时消费一个queue时，可以保证只有一个消费者可以消费消息，这样虽然保证了消息的顺序问题，不过也带来了一个问题，就是这个queue的所有消息将只会在这一个主消费者上消费，其他消费者将闲置，达不到负载均衡分配，而实际业务我们可能更多的是这样的场景，比如一个订单会发出一组顺序消息，我们只要求这一组消息是顺序消费的，而订单与订单之间又是可以并行消费的，不需要顺序，因为顺序也没有任何意义，有没有办法做到呢？可以利用activemq的另一个高级特性之messageGroup</p>
 <p>2、利用Activemq的高级特性：messageGroups</p>
 <p>Message<br>Groups特性是一种负载均衡的机制。在一个消息被分发到consumer之前，broker首先检查消息JMSXGroupID属性。如果存在，那么broker会检查是否有某个consumer拥有这个message<br>group。如果没有，那么broker会选择一个consumer，并将它关联到这个message<br>group。此后，这个consumer会接收这个message<br>group的所有消息，直到：Consumer被关闭。Message<br>group被关闭，通过发送一个消息，并设置这个消息的JMSXGroupSeq为-1</p>
-<p><img src="../images/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/image-20200225151200609.png" alt="image-20200225151200609"></p>
+<p><img src="/images/%E5%B8%B8%E8%A7%81%E9%9D%A2%E8%AF%95%E9%A2%98/image-20200225155029440.png" alt="image-20200225155029440"></p>
 <p><strong>bytesMessage</strong>.setStringProperty(“JMSXGroupID”, “constact-20100000002”);</p>
 <p><strong>bytesMessage</strong>.setIntProperty(“JMSXGroupSeq”, -1);</p>
 <p>如上图所示，同一个queue中，拥有相同JMSXGroupID的消息将发往同一个消费者，解决顺序问题，不同分组的消息又能被其他消费者并行消费，解决负载均衡的问题。</p>
@@ -630,6 +677,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2020/02/25/%E4%BF%9D%E8%AF%81%E6%B6%88%E6%81%AF%E7%9A%84%E5%8F%AF%E9%9D%A0%E6%80%A7/" rel="prev" title="保证消息的可靠性">
+                保证消息的可靠性 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -719,7 +770,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -730,7 +781,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -741,7 +792,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -793,7 +844,7 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
               <div class="links-of-blogroll-title">
                 <i class="fa  fa-fw fa-link"></i>
                 Links
@@ -827,7 +878,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#常见面试题"><span class="nav-number">1.</span> <span class="nav-text">常见面试题</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么使用消息队列？"><span class="nav-number">1.1.</span> <span class="nav-text">为什么使用消息队列？ </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解耦："><span class="nav-number">1.1.1.</span> <span class="nav-text">解耦：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步："><span class="nav-number">1.1.2.</span> <span class="nav-text">异步：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#削峰："><span class="nav-number">1.1.3.</span> <span class="nav-text">削峰：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息队列有什么优点和缺点"><span class="nav-number">1.2.</span> <span class="nav-text">消息队列有什么优点和缺点?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统可用性降低"><span class="nav-number">1.2.1.</span> <span class="nav-text">系统可用性降低</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统复杂性提高"><span class="nav-number">1.2.2.</span> <span class="nav-text">系统复杂性提高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一致性问题"><span class="nav-number">1.2.3.</span> <span class="nav-text">一致性问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见消息队列的比较"><span class="nav-number">1.3.</span> <span class="nav-text">常见消息队列的比较 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息的重复"><span class="nav-number">1.4.</span> <span class="nav-text">消息的重复 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原因"><span class="nav-number">1.4.1.</span> <span class="nav-text">原因</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一类原因"><span class="nav-number">1.4.1.1.</span> <span class="nav-text">第一类原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二类原因"><span class="nav-number">1.4.1.2.</span> <span class="nav-text">第二类原因</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何解决重复消费"><span class="nav-number">1.4.2.</span> <span class="nav-text">如何解决重复消费</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是幂等性？"><span class="nav-number">1.4.2.1.</span> <span class="nav-text">什么是幂等性？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见办法"><span class="nav-number">1.4.2.2.</span> <span class="nav-text">常见办法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-MVCC："><span class="nav-number">1.4.2.2.1.</span> <span class="nav-text">1. MVCC：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-去重表："><span class="nav-number">1.4.2.2.2.</span> <span class="nav-text">2. 去重表：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息的可靠性传输"><span class="nav-number">1.5.</span> <span class="nav-text">消息的可靠性传输 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ActiveMQ"><span class="nav-number">1.5.1.</span> <span class="nav-text">ActiveMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生产者"><span class="nav-number">1.5.1.1.</span> <span class="nav-text">生产者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消费者"><span class="nav-number">1.5.1.2.</span> <span class="nav-text">消费者</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#AUTO-ACKNOWLEDGE"><span class="nav-number">1.5.1.2.1.</span> <span class="nav-text">AUTO_ACKNOWLEDGE</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CLIENT-ACKNOWLEDGE"><span class="nav-number">1.5.1.2.2.</span> <span class="nav-text">CLIENT_ACKNOWLEDGE :</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DUPS-OK-ACKNOWLEDGE"><span class="nav-number">1.5.1.2.3.</span> <span class="nav-text">DUPS_OK_ACKNOWLEDGE</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SESSION-TRANSACTED"><span class="nav-number">1.5.1.2.4.</span> <span class="nav-text">SESSION_TRANSACTED</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RabbitMQ"><span class="nav-number">1.5.2.</span> <span class="nav-text">RabbitMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（1）生产者弄丢了数据"><span class="nav-number">1.5.2.1.</span> <span class="nav-text">（1）生产者弄丢了数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（2）RabbitMQ弄丢了数据"><span class="nav-number">1.5.2.2.</span> <span class="nav-text">（2）RabbitMQ弄丢了数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（3）消费端弄丢了数据"><span class="nav-number">1.5.2.3.</span> <span class="nav-text">（3）消费端弄丢了数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka"><span class="nav-number">1.5.3.</span> <span class="nav-text">Kafka</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（1）消费端弄丢了数据"><span class="nav-number">1.5.3.1.</span> <span class="nav-text">（1）消费端弄丢了数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（2）kafka弄丢了数据"><span class="nav-number">1.5.3.2.</span> <span class="nav-text">（2）kafka弄丢了数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（3）生产者会不会弄丢数据"><span class="nav-number">1.5.3.3.</span> <span class="nav-text">（3）生产者会不会弄丢数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息的顺序性"><span class="nav-number">1.6.</span> <span class="nav-text">消息的顺序性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ActiveMQ-1"><span class="nav-number">1.6.1.</span> <span class="nav-text">ActiveMQ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RabbitMQ-1"><span class="nav-number">1.6.2.</span> <span class="nav-text">RabbitMQ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-1"><span class="nav-number">1.6.3.</span> <span class="nav-text">Kafka</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何解决消息队列的延时以及过期失效问题？"><span class="nav-number">1.7.</span> <span class="nav-text">如何解决消息队列的延时以及过期失效问题？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有几百万消息持续积压几小时怎么解决？"><span class="nav-number">1.8.</span> <span class="nav-text">有几百万消息持续积压几小时怎么解决？ </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka是如何实现高性能的？"><span class="nav-number">1.9.</span> <span class="nav-text">Kafka是如何实现高性能的？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#宏观架构层面利用Partition实现并行处理"><span class="nav-number">1.9.1.</span> <span class="nav-text">宏观架构层面利用Partition实现并行处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ISR实现可用性与数据一致性的动态平衡"><span class="nav-number">1.9.2.</span> <span class="nav-text">ISR实现可用性与数据一致性的动态平衡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常用数据复制及一致性方案"><span class="nav-number">1.9.2.1.</span> <span class="nav-text">常用数据复制及一致性方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Master-Slave"><span class="nav-number">1.9.2.1.1.</span> <span class="nav-text">Master-Slave</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WNR"><span class="nav-number">1.9.2.1.2.</span> <span class="nav-text">WNR</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Paxos及其变种"><span class="nav-number">1.9.2.1.3.</span> <span class="nav-text">Paxos及其变种</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于ISR的数据复制方案"><span class="nav-number">1.9.2.2.</span> <span class="nav-text">基于ISR的数据复制方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体实现层面高效使用磁盘特性和操作系统特性"><span class="nav-number">1.9.3.</span> <span class="nav-text">具体实现层面高效使用磁盘特性和操作系统特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将写磁盘的过程变为顺序写"><span class="nav-number">1.9.3.1.</span> <span class="nav-text">将写磁盘的过程变为顺序写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#充分利用Page-Cache"><span class="nav-number">1.9.3.2.</span> <span class="nav-text">充分利用Page Cache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#支持多Disk-Drive"><span class="nav-number">1.9.3.3.</span> <span class="nav-text">支持多Disk Drive</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#零拷贝"><span class="nav-number">1.9.3.4.</span> <span class="nav-text">零拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#减少网络开销批处理"><span class="nav-number">1.9.3.5.</span> <span class="nav-text">减少网络开销批处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据压缩降低网络负载"><span class="nav-number">1.9.3.6.</span> <span class="nav-text">数据压缩降低网络负载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高效的序列化方式"><span class="nav-number">1.9.3.7.</span> <span class="nav-text">高效的序列化方式</span></a></li></ol></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么使用消息队列？"><span class="nav-text">为什么使用消息队列？ </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解耦："><span class="nav-text">解耦：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#异步："><span class="nav-text">异步：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#削峰："><span class="nav-text">削峰：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息队列有什么优点和缺点"><span class="nav-text">消息队列有什么优点和缺点?</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#系统可用性降低"><span class="nav-text">系统可用性降低</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#系统复杂性提高"><span class="nav-text">系统复杂性提高</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一致性问题"><span class="nav-text">一致性问题</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见消息队列的比较"><span class="nav-text">常见消息队列的比较 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息的重复"><span class="nav-text">消息的重复 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#原因"><span class="nav-text">原因</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#第一类原因"><span class="nav-text">第一类原因</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#第二类原因"><span class="nav-text">第二类原因</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何解决重复消费"><span class="nav-text">如何解决重复消费</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#什么是幂等性？"><span class="nav-text">什么是幂等性？</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常见办法"><span class="nav-text">常见办法</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-MVCC："><span class="nav-text">1. MVCC：</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-去重表："><span class="nav-text">2. 去重表：</span></a></li></ol></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息的可靠性传输"><span class="nav-text">消息的可靠性传输 </span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ActiveMQ"><span class="nav-text">ActiveMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#生产者"><span class="nav-text">生产者</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#消费者"><span class="nav-text">消费者</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#AUTO-ACKNOWLEDGE"><span class="nav-text">AUTO_ACKNOWLEDGE</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#CLIENT-ACKNOWLEDGE"><span class="nav-text">CLIENT_ACKNOWLEDGE :</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#DUPS-OK-ACKNOWLEDGE"><span class="nav-text">DUPS_OK_ACKNOWLEDGE</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#SESSION-TRANSACTED"><span class="nav-text">SESSION_TRANSACTED</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RabbitMQ"><span class="nav-text">RabbitMQ</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（1）生产者弄丢了数据"><span class="nav-text">（1）生产者弄丢了数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（2）RabbitMQ弄丢了数据"><span class="nav-text">（2）RabbitMQ弄丢了数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（3）消费端弄丢了数据"><span class="nav-text">（3）消费端弄丢了数据</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka"><span class="nav-text">Kafka</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#（1）消费端弄丢了数据"><span class="nav-text">（1）消费端弄丢了数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（2）kafka弄丢了数据"><span class="nav-text">（2）kafka弄丢了数据</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#（3）生产者会不会弄丢数据"><span class="nav-text">（3）生产者会不会弄丢数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息的顺序性"><span class="nav-text">消息的顺序性</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ActiveMQ-1"><span class="nav-text">ActiveMQ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RabbitMQ-1"><span class="nav-text">RabbitMQ</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kafka-1"><span class="nav-text">Kafka</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#如何解决消息队列的延时以及过期失效问题？"><span class="nav-text">如何解决消息队列的延时以及过期失效问题？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#有几百万消息持续积压几小时怎么解决？"><span class="nav-text">有几百万消息持续积压几小时怎么解决？ </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Kafka是如何实现高性能的？"><span class="nav-text">Kafka是如何实现高性能的？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#宏观架构层面利用Partition实现并行处理"><span class="nav-text">宏观架构层面利用Partition实现并行处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#ISR实现可用性与数据一致性的动态平衡"><span class="nav-text">ISR实现可用性与数据一致性的动态平衡</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#常用数据复制及一致性方案"><span class="nav-text">常用数据复制及一致性方案</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#Master-Slave"><span class="nav-text">Master-Slave</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#WNR"><span class="nav-text">WNR</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Paxos及其变种"><span class="nav-text">Paxos及其变种</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#基于ISR的数据复制方案"><span class="nav-text">基于ISR的数据复制方案</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体实现层面高效使用磁盘特性和操作系统特性"><span class="nav-text">具体实现层面高效使用磁盘特性和操作系统特性</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#将写磁盘的过程变为顺序写"><span class="nav-text">将写磁盘的过程变为顺序写</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#充分利用Page-Cache"><span class="nav-text">充分利用Page Cache</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#支持多Disk-Drive"><span class="nav-text">支持多Disk Drive</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#零拷贝"><span class="nav-text">零拷贝</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#减少网络开销批处理"><span class="nav-text">减少网络开销批处理</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#数据压缩降低网络负载"><span class="nav-text">数据压缩降低网络负载</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#高效的序列化方式"><span class="nav-text">高效的序列化方式</span></a></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -835,6 +886,13 @@
       <!--/noindex-->
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
       
 
     </div>
@@ -853,6 +911,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">jthu</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">21.7k</span>
   
 </div>
 
@@ -882,11 +949,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
@@ -1046,6 +1108,323 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 

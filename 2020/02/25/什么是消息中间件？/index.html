@@ -88,14 +88,15 @@
 
 
 
-<meta name="description" content="什么是消息中间件？[toc] 消息中间件(MQ)的定义其实并没有标准定义。一般认为，消息中间件属于分布式系统中一个子系统，关注于数据的发送和接收，利用高效可靠的异步消息传递机制对分布式系统中的其余各个子系统进行集成。  为什么要用消息中间件？假设一个电商交易的场景，用户下单之后调用库存系统减库存，然后需要调用物流系统进行发货，如果交易、库存、物流是属于一个系统的，那么就是接口调用。但是随着系统的发">
+<meta name="description" content="什么是消息中间件？     消息中间件(MQ)的定义其实并没有标准定义。一般认为，消息中间件属于分布式系统中一个子系统，关注于数据的发送和接收，利用高效可靠的异步消息传递机制对分布式系统中的其余各个子系统进行集成。   为什么要用消息中间件？假设一个电商交易的场景，用户下单之后调用库存系统减库存，然后需要调用物流系统进行发货，如果交易、库存、物流是属于一个系统的，那么就是接口调用。但是随着系统的发">
 <meta name="keywords" content="中间件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="什么是消息中间件？">
 <meta property="og:url" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2020&#x2F;02&#x2F;25&#x2F;%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F&#x2F;index.html">
 <meta property="og:site_name" content="jthu的博客">
-<meta property="og:description" content="什么是消息中间件？[toc] 消息中间件(MQ)的定义其实并没有标准定义。一般认为，消息中间件属于分布式系统中一个子系统，关注于数据的发送和接收，利用高效可靠的异步消息传递机制对分布式系统中的其余各个子系统进行集成。  为什么要用消息中间件？假设一个电商交易的场景，用户下单之后调用库存系统减库存，然后需要调用物流系统进行发货，如果交易、库存、物流是属于一个系统的，那么就是接口调用。但是随着系统的发">
+<meta property="og:description" content="什么是消息中间件？     消息中间件(MQ)的定义其实并没有标准定义。一般认为，消息中间件属于分布式系统中一个子系统，关注于数据的发送和接收，利用高效可靠的异步消息传递机制对分布式系统中的其余各个子系统进行集成。   为什么要用消息中间件？假设一个电商交易的场景，用户下单之后调用库存系统减库存，然后需要调用物流系统进行发货，如果交易、库存、物流是属于一个系统的，那么就是接口调用。但是随着系统的发">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2020&#x2F;02&#x2F;25&#x2F;%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F&#x2F;img%5Cimage-20200225144411023.png">
 <meta property="og:image" content="E:images%5Cimage-20200225140502618-1582610711570.png">
 <meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2020&#x2F;02&#x2F;25&#x2F;%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F&#x2F;D92FE5068C4E411A9740F27F480521DC">
 <meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2020&#x2F;02&#x2F;25&#x2F;%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F&#x2F;EF3E2B155D6B41E68552FC08563C66F7">
@@ -106,9 +107,9 @@
 <meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2020&#x2F;02&#x2F;25&#x2F;%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F&#x2F;5F7B30CA9DD7425DB3F3240C112ACB4A">
 <meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2020&#x2F;02&#x2F;25&#x2F;%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F&#x2F;54FABC73987645D891DF50A715706457">
 <meta property="og:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2020&#x2F;02&#x2F;25&#x2F;%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F&#x2F;928587A370774B53B647863BB36F2695">
-<meta property="og:updated_time" content="2020-02-25T06:05:39.960Z">
+<meta property="og:updated_time" content="2020-02-25T13:31:31.316Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="E:images%5Cimage-20200225140502618-1582610711570.png">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;hicker000.github.io&#x2F;2020&#x2F;02&#x2F;25&#x2F;%E4%BB%80%E4%B9%88%E6%98%AF%E6%B6%88%E6%81%AF%E4%B8%AD%E9%97%B4%E4%BB%B6%EF%BC%9F&#x2F;img%5Cimage-20200225144411023.png">
 
 
 
@@ -118,7 +119,7 @@
     root: '/',
     scheme: 'Gemini',
     version: '5.1.4',
-    sidebar: {"position":"left","display":"post","offset":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
     fancybox: true,
     tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
@@ -252,9 +253,43 @@
       
 
       
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" target="_blank" rel="noopener" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br />
+            
+            搜索
+          </a>
+        </li>
+      
     </ul>
   
 
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off"
+             placeholder="搜索..." spellcheck="false"
+             type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
   
 </nav>
 
@@ -382,7 +417,19 @@
               
 
               
+                <span class="post-meta-divider">|</span>
+              
 
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">
+                  8
+                </span>
               
             </div>
           
@@ -402,8 +449,13 @@
       
 
       
-        <h1 id="什么是消息中间件？"><a href="#什么是消息中间件？" class="headerlink" title="什么是消息中间件？"></a>什么是消息中间件？</h1><p>[toc]</p>
+        <h1 id="什么是消息中间件？"><a href="#什么是消息中间件？" class="headerlink" title="什么是消息中间件？"></a>什么是消息中间件？</h1><!-- toc -->
+
+
+
+
 <h2 id="消息中间件-MQ-的定义"><a href="#消息中间件-MQ-的定义" class="headerlink" title="消息中间件(MQ)的定义"></a>消息中间件(MQ)的定义</h2><p>其实并没有标准定义。一般认为，消息中间件属于分布式系统中一个子系统，关注于数据的发送和接收，利用高效可靠的异步消息传递机制对分布式系统中的其余各个子系统进行集成。</p>
+<p><img src="img%5Cimage-20200225144411023.png" alt="image-20200225144411023"></p>
 <p><img src="E:images%5Cimage-20200225140502618-1582610711570.png" alt="image-20200225140502618"></p>
 <h2 id="为什么要用消息中间件？"><a href="#为什么要用消息中间件？" class="headerlink" title="为什么要用消息中间件？"></a>为什么要用消息中间件？</h2><p>假设一个电商交易的场景，用户下单之后调用库存系统减库存，然后需要调用物流系统进行发货，如果交易、库存、物流是属于一个系统的，那么就是接口调用。但是随着系统的发展，各个模块越来越庞大、业务逻辑越来越复杂，必然是要做服务化和业务拆分的。这个时候就需要考虑这些系统之间如何交互，第一反应就是RPC（Remote<br>Procedure<br>Call）。系统继续发展，可能一笔交易后续需要调用几十个接口来执行业务，比如还有风控系统、短信服务等等。这个时候就需要消息中间件登场来解决问题了。</p>
 <p>所以消息中间件主要解决分布式系统之间消息的传递，同时为分布式系统中其他子系统提供了伸缩性和扩展性。为系统带来了：</p>
@@ -631,7 +683,7 @@
               
                 <a href="/archives">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -642,7 +694,7 @@
               
               <div class="site-state-item site-state-categories">
                 <a href="/categories/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">分类</span>
                 </a>
               </div>
@@ -653,7 +705,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">标签</span>
                 </a>
               </div>
@@ -705,7 +757,7 @@
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
               <div class="links-of-blogroll-title">
                 <i class="fa  fa-fw fa-link"></i>
                 Links
@@ -739,7 +791,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是消息中间件？"><span class="nav-number">1.</span> <span class="nav-text">什么是消息中间件？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#消息中间件-MQ-的定义"><span class="nav-number">1.1.</span> <span class="nav-text">消息中间件(MQ)的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要用消息中间件？"><span class="nav-number">1.2.</span> <span class="nav-text">为什么要用消息中间件？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#和RPC有何区别？"><span class="nav-number">1.3.</span> <span class="nav-text">和RPC有何区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息中间件有些什么使用场景？"><span class="nav-number">1.4.</span> <span class="nav-text">消息中间件有些什么使用场景？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步处理"><span class="nav-number">1.4.1.</span> <span class="nav-text">异步处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用解耦"><span class="nav-number">1.4.2.</span> <span class="nav-text">应用解耦</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流量削峰"><span class="nav-number">1.4.3.</span> <span class="nav-text">流量削峰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志处理"><span class="nav-number">1.4.4.</span> <span class="nav-text">日志处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息通讯"><span class="nav-number">1.4.5.</span> <span class="nav-text">消息通讯</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息中间件的编年史"><span class="nav-number">1.5.</span> <span class="nav-text">消息中间件的编年史 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的消息中间件比较"><span class="nav-number">1.6.</span> <span class="nav-text">常见的消息中间件比较 </span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#什么是消息中间件？"><span class="nav-text">什么是消息中间件？</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#消息中间件-MQ-的定义"><span class="nav-text">消息中间件(MQ)的定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么要用消息中间件？"><span class="nav-text">为什么要用消息中间件？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#和RPC有何区别？"><span class="nav-text">和RPC有何区别？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息中间件有些什么使用场景？"><span class="nav-text">消息中间件有些什么使用场景？</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#异步处理"><span class="nav-text">异步处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#应用解耦"><span class="nav-text">应用解耦</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#流量削峰"><span class="nav-text">流量削峰</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#日志处理"><span class="nav-text">日志处理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消息通讯"><span class="nav-text">消息通讯</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息中间件的编年史"><span class="nav-text">消息中间件的编年史 </span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#常见的消息中间件比较"><span class="nav-text">常见的消息中间件比较 </span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -747,6 +799,13 @@
       <!--/noindex-->
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
       
 
     </div>
@@ -765,6 +824,15 @@
   </span>
   <span class="author" itemprop="copyrightHolder">jthu</span>
 
+  
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">21.7k</span>
   
 </div>
 
@@ -794,11 +862,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
@@ -958,6 +1021,323 @@
 
 
   
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
 
 
 
